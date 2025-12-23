@@ -35,19 +35,67 @@ export const OPTIMIZATION_TECHNIQUES: OptimizationTechnique[] = [
 ];
 
 export const FRAMEWORKS: PromptFramework[] = [
-  { name: 'RISEN', components: 'Role, Instructions, Steps, End Goal, Narrowing', bestFor: 'High-level Test Strategies & Architecture' },
-  { name: 'COSTAR', components: 'Context, Objective, Style, Tone, Audience, Response', bestFor: 'Executive Reports & Post-Mortems' },
-  { name: 'APE', components: 'Action, Purpose, Expectation', bestFor: 'API Testing & Compliance Checks' },
-  { name: 'CARE', components: 'Context, Action, Result, Example', bestFor: 'Legacy Refactoring (Selenium to Playwright)' },
-  { name: 'TAG', components: 'Task, Action, Goal', bestFor: 'Tactical Debugging & Prompt Refinement' },
-  { name: 'RODES', components: 'Role, Objective, Details, Examples, Sense Check', bestFor: 'Automation Infrastructure Design' },
+  {
+    name: 'RISEN',
+    components: 'Role, Instructions, Steps, End Goal, Narrowing',
+    bestFor: 'High-level Test Strategies & Architecture'
+  },
+  {
+    name: 'COSTAR',
+    components: 'Context, Objective, Style, Tone, Audience, Response',
+    bestFor: 'Executive Reports & Post-Mortems'
+  },
+  {
+    name: 'APE',
+    components: 'Action, Purpose, Expectation',
+    bestFor: 'API Testing & Compliance Checks'
+  },
+  {
+    name: 'CARE',
+    components: 'Context, Action, Result, Example',
+    bestFor: 'Legacy Refactoring (Selenium to Playwright)'
+  },
+  {
+    name: 'TAG',
+    components: 'Task, Action, Goal',
+    bestFor: 'Tactical Debugging & Prompt Refinement'
+  },
+  {
+    name: 'RODES',
+    components: 'Role, Objective, Details, Examples, Sense Check',
+    bestFor: 'Automation Infrastructure Design'
+  },
 ];
 
 export const BENCHMARKS: ModelBenchmark[] = [
-  { model: 'Gemini 3 Pro', gpqa: '91.9%', sweBench: '76.2%', aime: '100%', context: '1M–2M' },
-  { model: 'Claude 4.5', gpqa: '93.8%', sweBench: '77.2%', aime: '98%', context: '200K' },
-  { model: 'GPT-5.2', gpqa: '88.1%', sweBench: '80.0%', aime: '100%', context: '128K' },
-  { model: 'Llama 3.2 405B', gpqa: '82.5%', sweBench: '71.0%', aime: '92%', context: '128K' },
+  {
+    model: 'Gemini 3 Pro',
+    gpqa: '91.9%',
+    sweBench: '76.2%',
+    aime: '100%',
+    context: '1M–2M'
+  },
+  {
+    model: 'Claude 4.5',
+    gpqa: '93.8%',
+    sweBench: '77.2%',
+    aime: '98%',
+    context: '200K'
+  },
+  {
+    model: 'GPT-5.2',
+    gpqa: '88.1%',
+    sweBench: '80.0%',
+    aime: '100%',
+    context: '128K'
+  },
+  {
+    model: 'Llama 3.2 405B',
+    gpqa: '82.5%',
+    sweBench: '71.0%',
+    aime: '92%',
+    context: '128K'
+  },
 ];
 
 export const SUPER_PROMPTS: SuperPrompt[] = [
@@ -105,10 +153,26 @@ export const SYSTEM_PROMPTS: SystemPrompt[] = [
 ];
 
 export const GOOGLE_PRODUCTS: GoogleProduct[] = [
-  { name: 'Google Flow', focus: 'AI-Native CI/CD', prompt: "Analyze the last 5 failed builds; correlate timeouts with Istio updates and patch .google-flow.yaml." },
-  { name: 'Antigravity', focus: 'Load Simulation', prompt: "Simulate 10k 'Indecisive Shoppers'; monitor DB lock-wait times in the Inventory-Service." },
-  { name: 'Remix', focus: 'Legacy Refactoring', prompt: "Migrate Selenium/Java to Playwright/TypeScript; replace Thread.sleep with dynamic waits." },
-  { name: 'Stitch', focus: 'Visual Verification', prompt: "Compare Pixel 10 checkout screenshot with Figma spec; flag padding deltas >2px." }
+  {
+    name: 'Google Flow',
+    focus: 'AI-Native CI/CD',
+    prompt: "Analyze the last 5 failed builds; correlate timeouts with Istio updates and patch .google-flow.yaml."
+  },
+  {
+    name: 'Antigravity',
+    focus: 'Load Simulation',
+    prompt: "Simulate 10k 'Indecisive Shoppers'; monitor DB lock-wait times in the Inventory-Service."
+  },
+  {
+    name: 'Remix',
+    focus: 'Legacy Refactoring',
+    prompt: "Migrate Selenium/Java to Playwright/TypeScript; replace Thread.sleep with dynamic waits."
+  },
+  {
+    name: 'Stitch',
+    focus: 'Visual Verification',
+    prompt: "Compare Pixel 10 checkout screenshot with Figma spec; flag padding deltas >2px."
+  }
 ];
 
 export const INITIAL_RESOURCES: Resource[] = [

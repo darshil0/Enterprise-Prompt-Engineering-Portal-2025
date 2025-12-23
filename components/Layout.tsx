@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback } from 'react';
+import { Shield, Box, Cpu, Cloud, Zap, Activity, CheckCircle, BarChart3, Book, BookOpen, Trophy } from 'lucide-react';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -7,159 +8,181 @@ interface LayoutProps {
 }
 
 const NAV_ITEMS = [
-  { id: 'intro', label: 'Intelligence Core', icon: 'Shield', category: 'Foundation' },
-  { id: 'frameworks', label: 'Logical Frameworks', icon: 'Box', category: 'Foundation' },
-  { id: 'system-prompts', label: 'System Architecture', icon: 'Cpu', category: 'Orchestration' },
-  { id: 'google-suite', label: 'Google AI Ecosystem', icon: 'Cloud', category: 'Orchestration' },
-  { id: 'super-prompts', label: 'Super-Input Logic', icon: 'Zap', category: 'Expert' },
-  { id: 'studio-tips', label: 'Studio Optimization', icon: 'Activity', category: 'Expert' },
-  { id: 'optimization', label: 'Verification Loops', icon: 'CheckCircle', category: 'Validation' },
-  { id: 'benchmarks', label: 'Signal Performance', icon: 'BarChart3', category: 'Validation' },
-  { id: 'manual', label: 'Enterprise Manual', icon: 'Book', category: 'Resources' },
-  { id: 'resources', label: 'Knowledge Base', icon: 'BookOpen', category: 'Resources' },
-  { id: 'roadmap', label: '2026 Horizon', icon: 'Trophy', category: 'Resources' },
-];
+  { id: 'intro', label: 'Intelligence Core', icon: Shield, category: 'Foundation' },
+  { id: 'frameworks', label: 'Logical Frameworks', icon: Box, category: 'Foundation' },
+  { id: 'system-prompts', label: 'System Architecture', icon: Cpu, category: 'Orchestration' },
+  { id: 'google-suite', label: 'Google AI Ecosystem', icon: Cloud, category: 'Orchestration' },
+  { id: 'super-prompts', label: 'Super-Input Logic', icon: Zap, category: 'Expert' },
+  { id: 'studio-tips', label: 'Studio Optimization', icon: Activity, category: 'Expert' },
+  { id: 'optimization', label: 'Verification Loops', icon: CheckCircle, category: 'Validation' },
+  { id: 'benchmarks', label: 'Signal Performance', icon: BarChart3, category: 'Validation' },
+  { id: 'manual', label: 'Enterprise Manual', icon: Book, category: 'Resources' },
+  { id: 'resources', label: 'Knowledge Base', icon: BookOpen, category: 'Resources' },
+  { id: 'roadmap', label: '2026 Horizon', icon: Trophy, category: 'Resources' },
+] as const;
 
 export const Layout: React.FC<LayoutProps> = ({ children, activeSection, setActiveSection }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  const handleNavClick = useCallback((id: string) => {
+    setActiveSection(id);
+    setIsMobileMenuOpen(false);
+  }, [setActiveSection]);
 
   const groupedNav = NAV_ITEMS.reduce((acc, item) => {
     if (!acc[item.category]) acc[item.category] = [];
     acc[item.category].push(item);
     return acc;
-  }, {} as Record<string, typeof NAV_ITEMS>);
+  }, {} as Record<string, typeof NAV_ITEMS[number][]>);
 
   return (
-    <div className="flex min-h-screen font-sans selection:bg-brand-100 selection:text-brand-900">
+    <div className="flex min-h-screen font-sans selection:bg-brand-500/10 selection:text-brand-600 antialiased">
       {/* Mobile Backdrop */}
       {isMobileMenuOpen && (
         <div 
-          className="fixed inset-0 bg-zinc-900/10 backdrop-blur-sm z-[60] md:hidden"
+          className="fixed inset-0 bg-zinc-900/20 backdrop-blur-sm z-[60] md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
+          aria-hidden="true"
         />
       )}
 
-      {/* Futuristic Sidebar */}
+      {/* Sidebar */}
       <aside className={`
-        fixed left-0 top-0 h-full glass-sidebar w-72 z-[70] transition-all duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]
-        md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-        flex flex-col
+        fixed left-0 top-0 h-full w-72 z-[70] transition-all duration-500 ease-out
+        md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+        flex flex-col bg-white/80 backdrop-blur-xl border-r border-zinc-100/50 shadow-2xl shadow-zinc-900/5
       `}>
-        <div className="p-8 border-b border-zinc-100/50">
-          <div className="flex items-center gap-3 mb-1">
-            <div className="size-10 bg-brand-600 rounded-xl flex items-center justify-center shadow-lg shadow-brand-200">
-              <div className="size-5 border-2 border-white/50 rounded-md rotate-45 border-t-white" />
+        <div className="p-6 border-b border-zinc-100/50 shrink-0">
+          <div className="flex items-center gap-3">
+            <div className="size-12 bg-gradient-to-br from-brand-500 to-brand-600 rounded-2xl flex items-center justify-center shadow-xl shadow-brand-500/25">
+              <div className="size-6 border-2 border-white/20 rounded-md rotate-45 border-t-white" />
             </div>
-            <div>
-              <h1 className="text-sm font-extrabold tracking-tight text-zinc-900 leading-none">ARCHITECT</h1>
-              <p className="text-[10px] text-zinc-400 font-bold tracking-widest uppercase">Prompt OS v3</p>
+            <div className="min-w-0">
+              <h1 className="text-base font-black tracking-tight text-zinc-900 truncate leading-tight">ARCHITECT</h1>
+              <p className="text-xs font-bold text-zinc-500 tracking-widest uppercase">Prompt OS v3</p>
             </div>
           </div>
         </div>
 
-        <nav className="flex-1 overflow-y-auto px-4 py-8 space-y-8 scrollbar-hide">
+        <nav className="flex-1 overflow-y-auto px-4 py-8 space-y-6 scrollbar-thin scrollbar-thumb-zinc-200 scrollbar-track-zinc-50 md:scrollbar-hide">
           {Object.entries(groupedNav).map(([category, items]) => (
-            <div key={category} className="space-y-2">
-              <h3 className="px-4 text-[10px] font-bold text-zinc-400 uppercase tracking-widest">{category}</h3>
+            <div key={category} className="space-y-2 last:mb-8">
+              <h3 className="px-2 text-xs font-black text-zinc-400 uppercase tracking-[0.2em]">{category}</h3>
               <div className="space-y-1">
-                {items.map((item) => (
-                  <button
-                    key={item.id}
-                    onClick={() => {
-                      setActiveSection(item.id);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`w-full group flex items-center gap-3 px-4 py-2.5 rounded-xl transition-all duration-300 ${
-                      activeSection === item.id
-                        ? 'bg-brand-600 text-white shadow-md shadow-brand-100'
-                        : 'text-zinc-500 hover:bg-zinc-100/50 hover:text-zinc-900'
-                    }`}
-                  >
-                    <div className={`transition-transform duration-300 ${activeSection === item.id ? 'scale-110' : 'group-hover:scale-110'}`}>
-                      <span className="text-lg">
-                        {item.id === 'intro' ? '🎯' : 
-                         item.id === 'frameworks' ? '🧩' :
-                         item.id === 'system-prompts' ? '⚙️' :
-                         item.id === 'google-suite' ? '💎' :
-                         item.id === 'super-prompts' ? '⚡' :
-                         item.id === 'studio-tips' ? '✨' :
-                         item.id === 'optimization' ? '📈' :
-                         item.id === 'benchmarks' ? '📊' :
-                         item.id === 'resources' ? '📚' : 
-                         item.id === 'manual' ? '📖' : '🚀'}
-                      </span>
-                    </div>
-                    <span className="text-xs font-semibold">{item.label}</span>
-                  </button>
-                ))}
+                {items.map((item) => {
+                  const Icon = item.icon;
+                  const isActive = activeSection === item.id;
+                  
+                  return (
+                    <button
+                      key={item.id}
+                      onClick={() => handleNavClick(item.id)}
+                      className={`
+                        w-full group flex items-center gap-3 px-4 py-3 rounded-2xl transition-all duration-200 relative overflow-hidden
+                        ${isActive
+                          ? 'bg-gradient-to-r from-brand-500 to-brand-600 text-white shadow-lg shadow-brand-500/25'
+                          : 'text-zinc-600 hover:bg-zinc-50 hover:text-zinc-900 hover:shadow-md hover:shadow-zinc-100/50'
+                        }
+                        focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2
+                      `}
+                      aria-current={isActive ? 'page' : undefined}
+                    >
+                      <div className={`p-2 rounded-xl transition-all duration-200 flex-shrink-0 ${
+                        isActive 
+                          ? 'bg-white/20 backdrop-blur-sm shadow-lg shadow-white/20' 
+                          : 'group-hover:bg-zinc-100'
+                      }`}>
+                        <Icon size={18} className={`transition-transform duration-200 ${isActive ? 'scale-110' : 'group-hover:scale-110'}`} />
+                      </div>
+                      <span className="text-sm font-semibold truncate">{item.label}</span>
+                      {isActive && (
+                        <div className="absolute right-2 top-1/2 -translate-y-1/2 w-1 h-6 bg-white/50 rounded-full" />
+                      )}
+                    </button>
+                  );
+                })}
               </div>
             </div>
           ))}
         </nav>
 
-        <div className="p-6 border-t border-zinc-100/50">
-          <div className="p-4 bg-zinc-900 rounded-2xl shadow-xl overflow-hidden relative">
-            <div className="absolute top-0 right-0 w-24 h-24 bg-brand-500/10 rounded-full blur-2xl -mr-8 -mt-8" />
+        <div className="p-6 border-t border-zinc-100/50 shrink-0">
+          <div className="p-6 bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-3xl shadow-2xl relative overflow-hidden">
+            <div className="absolute inset-0 bg-gradient-to-r from-emerald-500/5 to-brand-500/5 blur-xl" />
             <div className="relative z-10">
-              <div className="flex items-center gap-2 mb-2">
-                <div className="size-2 bg-emerald-500 rounded-full animate-pulse" />
-                <span className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">Realtime Node</span>
+              <div className="flex items-center gap-2 mb-3">
+                <div className="size-2.5 bg-emerald-400 rounded-full animate-pulse shadow-lg shadow-emerald-500/25" />
+                <span className="text-xs font-bold text-zinc-300 uppercase tracking-widest">Realtime Node</span>
               </div>
-              <p className="text-xs font-bold text-white">Gemini-3-Pro-Preview</p>
-              <div className="mt-3 h-1 w-full bg-zinc-800 rounded-full overflow-hidden">
-                <div className="h-full bg-brand-500 w-3/4 animate-pulse" />
+              <p className="text-sm font-bold text-white mb-3 truncate">Gemini-3-Pro-Preview</p>
+              <div className="h-2 bg-zinc-700/50 rounded-full overflow-hidden">
+                <div className="h-full bg-gradient-to-r from-emerald-400 to-brand-500 w-[85%] animate-pulse shadow-inner" />
               </div>
             </div>
           </div>
         </div>
       </aside>
 
-      {/* Main Container */}
-      <main className="flex-1 md:ml-72 flex flex-col min-h-screen">
-        <header className="sticky top-0 z-50 glass-sidebar px-8 py-4 flex items-center justify-between border-b border-zinc-100/80">
-          <div className="flex items-center gap-4">
-             <button 
-              onClick={() => setIsMobileMenuOpen(true)}
-              className="md:hidden p-2 text-zinc-500 bg-zinc-100 rounded-lg"
-            >
-              <span className="block w-4 h-0.5 bg-current mb-1"></span>
-              <span className="block w-4 h-0.5 bg-current mb-1"></span>
-              <span className="block w-4 h-0.5 bg-current"></span>
-            </button>
-            <div className="hidden md:flex items-center gap-2 text-xs font-bold text-zinc-400">
-               <span>System</span>
-               <span className="text-zinc-300">/</span>
-               <span className="text-zinc-900 capitalize">{activeSection.replace('-', ' ')}</span>
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col min-h-screen md:ml-72">
+        <header className="sticky top-0 z-50 bg-white/80 backdrop-blur-xl border-b border-zinc-100/80 shadow-sm shrink-0">
+          <div className="px-6 lg:px-8 py-4 flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <button 
+                onClick={() => setIsMobileMenuOpen(true)}
+                className="md:hidden p-2.5 text-zinc-500 hover:bg-zinc-100 rounded-xl transition-colors focus:outline-none focus:ring-2 focus:ring-zinc-500"
+                aria-label="Open menu"
+              >
+                <span className="block w-5 h-0.5 bg-current mb-1.5 rounded-full transition-transform"></span>
+                <span className="block w-5 h-0.5 bg-current mb-1.5 rounded-full transition-transform"></span>
+                <span className="block w-5 h-0.5 bg-current rounded-full transition-transform"></span>
+              </button>
+              <div className="hidden md:flex items-center gap-2 text-sm font-bold text-zinc-400">
+                <span>System</span>
+                <span className="text-zinc-300 mx-1">/</span>
+                <span className="text-zinc-900 capitalize font-black tracking-tight">
+                  {activeSection.replace(/-/g, ' ')}
+                </span>
+              </div>
             </div>
-          </div>
-          
-          <div className="flex items-center gap-6">
-            <div className="hidden lg:flex items-center gap-4 border-r border-zinc-100 pr-6 mr-0">
-               <div className="flex flex-col items-end">
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase leading-none">Global Accuracy</span>
-                  <span className="text-xs font-extrabold text-zinc-900">99.82%</span>
-               </div>
-               <div className="flex flex-col items-end">
-                  <span className="text-[10px] font-bold text-zinc-400 uppercase leading-none">Processing</span>
-                  <span className="text-xs font-extrabold text-emerald-600">Optimal</span>
-               </div>
+            
+            <div className="flex items-center gap-4 lg:gap-6">
+              <div className="hidden lg:flex items-center gap-6 border-r border-zinc-200 pr-8">
+                <div className="text-right">
+                  <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block leading-tight">Global Accuracy</span>
+                  <span className="text-lg font-black text-zinc-900">99.82%</span>
+                </div>
+                <div className="text-right">
+                  <span className="text-xs font-bold text-zinc-400 uppercase tracking-wider block leading-tight">Processing</span>
+                  <span className="text-sm font-black text-emerald-600">Optimal</span>
+                </div>
+              </div>
+              <button className="
+                flex items-center gap-2 px-6 py-2.5 bg-zinc-900 hover:bg-zinc-800 text-white 
+                rounded-2xl text-xs font-black uppercase tracking-widest 
+                shadow-lg shadow-zinc-900/25 hover:shadow-xl hover:shadow-zinc-900/40
+                transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-zinc-500
+              ">
+                Sync Manual
+              </button>
             </div>
-            <button className="flex items-center gap-2 px-4 py-2 bg-zinc-900 text-white rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-zinc-800 transition-colors">
-               Sync Manual
-            </button>
           </div>
         </header>
 
-        <div className="p-8 lg:p-16 max-w-7xl mx-auto w-full">
-           {children}
-        </div>
+        <main className="flex-1 overflow-y-auto">
+          <div className="p-8 lg:p-12 xl:p-16 2xl:p-20 max-w-7xl mx-auto w-full">
+            {children}
+          </div>
+        </main>
 
-        <footer className="mt-auto p-12 border-t border-zinc-100 text-center">
-            <p className="text-[10px] font-bold text-zinc-400 uppercase tracking-widest">
-              &copy; 2025 Enterprise Intelligence Operations • All Rights Reserved
+        <footer className="border-t border-zinc-100 bg-white/50 backdrop-blur-sm shrink-0">
+          <div className="px-8 py-8 text-center">
+            <p className="text-xs font-black text-zinc-400 uppercase tracking-widest">
+              © 2025 Enterprise Intelligence Operations • All Rights Reserved
             </p>
+          </div>
         </footer>
-      </main>
+      </div>
     </div>
   );
 };
