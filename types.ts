@@ -44,10 +44,3 @@ export interface GoogleProduct {
   focus: string;
   prompt: string;
 }
-
-export interface SocialAccount {
-  name: string;
-  handle: string;
-  link: string;
-  description: string;
-}

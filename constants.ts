@@ -1,4 +1,4 @@
-import { PromptFramework, ModelBenchmark, SuperPrompt, SystemPrompt, Resource, GoogleProduct, SocialAccount } from './types';
+import { PromptFramework, ModelBenchmark, SuperPrompt, SystemPrompt, Resource, GoogleProduct } from './types';
 
 export interface OptimizationTechnique {
   name: string;
@@ -33,9 +33,6 @@ export const OPTIMIZATION_TECHNIQUES: OptimizationTechnique[] = [
     implementation: 'Role: "Act as a Senior Auditor. Evaluate the previous solution for security vulnerabilities and logical gaps. Suggest specific remediation steps."'
   }
 ];
-
-// Mapping for easier usage in components
-export const OPTIMIZATION_TECHNIQUE_INTERFACE = OPTIMIZATION_TECHNIQUES;
 
 export const FRAMEWORKS: PromptFramework[] = [
   { name: 'RISEN', components: 'Role, Instructions, Steps, End Goal, Narrowing', bestFor: 'High-level Test Strategies & Architecture' },
@@ -127,25 +124,4 @@ export const INITIAL_RESOURCES: Resource[] = [
   { organization: 'DAIR.AI', type: 'Comprehensive Guide', category: 'Community', description: 'The gold standard community repository for prompt engineering research and history.', link: 'https://github.com/dair-ai/Prompt-Engineering-Guide' },
   { organization: 'Learn Prompting', type: 'Open Source Course', category: 'Community', description: 'A structured, beginner-to-expert curriculum for all major LLM families.', link: 'https://learnprompting.org/' },
   { organization: 'DeepLearning.AI', type: 'Developer Courses', category: 'Community', description: 'Short courses on prompt engineering for developers by Andrew Ng.', link: 'https://www.deeplearning.ai/short-courses/' }
-];
-
-export const SOCIAL_RESOURCES: SocialAccount[] = [
-  { 
-    name: 'Google DeepMind', 
-    handle: '@GoogleDeepMind', 
-    link: 'https://x.com/GoogleDeepMind', 
-    description: 'Official breakthroughs and updates on the Gemini ecosystem and frontier research.' 
-  },
-  { 
-    name: 'OpenAI', 
-    handle: '@OpenAI', 
-    link: 'https://x.com/OpenAI', 
-    description: 'Product releases, model technical reports, and safety updates from the GPT team.' 
-  },
-  { 
-    name: 'Anthropic', 
-    handle: '@AnthropicAI', 
-    link: 'https://x.com/AnthropicAI', 
-    description: 'Insights into Constitutional AI and logical reasoning advances in Claude.' 
-  },
 ];

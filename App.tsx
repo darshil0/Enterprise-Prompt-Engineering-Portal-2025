@@ -9,7 +9,7 @@ import {
   INITIAL_RESOURCES,
   GOOGLE_PRODUCTS,
   BENCHMARKS,
-  OPTIMIZATION_TECHNIQUE_INTERFACE as OPTIMIZATION_TECHNIQUES
+  OPTIMIZATION_TECHNIQUES
 } from './constants';
 import { geminiService } from './services/geminiService';
 import { Resource, ResourceCategory } from './types';
@@ -397,7 +397,7 @@ const App: React.FC = () => {
               {[
                 { phase: 'Phase 1: Multi-Agent Choreography', desc: 'Moving from single prompts to "Agent Handshakes" where specialized bots (Security, Perf, QA) collaborate autonomously.', status: 'Upcoming' },
                 { phase: 'Phase 2: Temporal Multimodal Debugging', desc: 'Models (Veo 3.1) watching UI sessions and syncing them to backend log trace IDs automatically.', status: 'In Lab' },
-                { phase: 'Phase 3: Local SLMs (Small Language Models)', desc: 'Running 8B models (Gemini Nano 2) on local dev machines for real-time, private code auditing.', status: 'Foundational' }
+                { phase: 'Phase 3: Local SLMs (Small Language Models)', desc: 'Running 8B models (Gemma 2) on local dev machines for real-time, private code auditing.', status: 'Foundational' }
               ].map((item, idx) => (
                 <div key={idx} className="p-12 bg-white border border-zinc-100 rounded-[3.5rem] relative group overflow-hidden">
                   <div className="flex flex-col md:flex-row md:items-center justify-between gap-8">
