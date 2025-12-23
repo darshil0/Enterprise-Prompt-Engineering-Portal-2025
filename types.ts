@@ -1,5 +1,6 @@
-
 export type ResourceCategory = 'Documentation' | 'Cookbook' | 'Blog' | 'Community';
+
+export type OptimizationCategory = 'Testing' | 'Optimizing' | 'Reasoning';
 
 export interface Resource {
   organization: string;
@@ -50,4 +51,11 @@ export interface SocialAccount {
   handle: string;
   link: string;
   description: string;
+}
+
+export interface OptimizationTechnique {
+  name: string;
+  category: OptimizationCategory;
+  description: string;
+  implementation: string;
 }
