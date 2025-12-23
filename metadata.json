@@ -1,5 +1,108 @@
 {
   "name": "Enterprise Prompt Engineering Portal 2025",
+  "shortName": "Prompt Architect",
+  "version": "2.0.0",
   "description": "An interactive, AI-powered manual for modern prompt engineering, featuring frameworks, super-prompts, and real-time model benchmarking.",
-  "requestFramePermissions": []
+  "longDescription": "Master prompt engineering with the Enterprise Prompt Engineering Portal - a comprehensive platform featuring industry-standard frameworks (RISEN, COSTAR, APE), AI-powered prompt refinement via Gemini API, real-time model benchmarking, system architecture templates for Claude/GPT/Gemini, and curated resources from OpenAI, Anthropic, and Google. Perfect for QA engineers, developers, and AI practitioners seeking deterministic, production-ready prompt strategies.",
+  "author": {
+    "name": "Enterprise Intelligence Operations",
+    "email": "support@example.com",
+    "url": "https://example.com"
+  },
+  "category": "Productivity",
+  "keywords": [
+    "prompt engineering",
+    "AI",
+    "LLM",
+    "Gemini",
+    "Claude",
+    "GPT",
+    "frameworks",
+    "RISEN",
+    "COSTAR",
+    "machine learning",
+    "artificial intelligence",
+    "enterprise",
+    "QA",
+    "testing",
+    "automation",
+    "benchmarking"
+  ],
+  "homepage": "https://ai.studio/apps/drive/1Bl5nuWJjHhv0OVluoWsCjYYVQEW1KCHS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/enterprise-prompt-portal"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/enterprise-prompt-portal/issues",
+    "email": "support@example.com"
+  },
+  "license": "MIT",
+  "requestFramePermissions": [],
+  "features": [
+    "AI-powered prompt refinement with Gemini API",
+    "Interactive framework library (RISEN, COSTAR, APE, CARE, TAG, RODES)",
+    "Real-time model benchmarking visualization",
+    "System prompt templates for major LLM platforms",
+    "Comprehensive resource hub with curated links",
+    "Super-prompt templates for QA and development",
+    "Optimization techniques (CoT, CoVe, Few-Shot)",
+    "Google AI Ecosystem integration"
+  ],
+  "screenshots": [
+    "/screenshots/dashboard.png",
+    "/screenshots/frameworks.png",
+    "/screenshots/refinement.png",
+    "/screenshots/benchmarks.png"
+  ],
+  "languages": [
+    "en"
+  ],
+  "targetAudience": [
+    "QA Engineers",
+    "Software Developers",
+    "AI/ML Engineers",
+    "Technical Writers",
+    "Product Managers",
+    "Enterprise Teams"
+  ],
+  "requirements": {
+    "browser": ["Chrome 90+", "Firefox 88+", "Safari 14+", "Edge 90+"],
+    "api": {
+      "gemini": {
+        "required": false,
+        "description": "Optional: Required only for AI-powered prompt refinement feature"
+      }
+    }
+  },
+  "privacy": {
+    "dataCollection": "API key stored locally only",
+    "thirdPartyServices": ["Google Gemini API (optional)", "Google Fonts", "Tailwind CDN"],
+    "analytics": false
+  },
+  "support": {
+    "email": "support@example.com",
+    "documentation": "https://github.com/yourusername/enterprise-prompt-portal#readme",
+    "community": "https://discord.gg/example"
+  },
+  "changelog": {
+    "2.0.0": {
+      "date": "2025-12-23",
+      "changes": [
+        "Fixed Gemini API integration",
+        "Enhanced TypeScript type definitions",
+        "Improved error handling",
+        "Comprehensive documentation",
+        "Performance optimizations"
+      ]
+    },
+    "1.0.0": {
+      "date": "2025-11-01",
+      "changes": [
+        "Initial release",
+        "Core framework library",
+        "Basic UI/UX design"
+      ]
+    }
+  }
 }
