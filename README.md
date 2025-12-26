@@ -12,14 +12,14 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 ### ✨ Key Features
 
-- 🧩 **Logical Frameworks**: RISEN, COSTAR, APE, CARE, TAG, and RODES frameworks for structured prompting
+- 🧩 **2025 Frameworks**: RISEN, COSTAR, RACEF, SPEAR, QUEST, and RODES for next-gen prompting
 - ⚡ **Super-Input Logic**: Pre-built prompt templates for QA, development, and strategic planning
-- ⚙️ **System Architecture**: Foundational system prompts for Claude, GPT, and Gemini models
+- ⚙️ **System Architecture**: Foundational system prompts for Claude 4.5, GPT-5, and Gemini 2.5 models
 - 📊 **Signal Performance**: Real-time model benchmarking with interactive charts
 - 💎 **Google AI Ecosystem**: Integration with Gemini API for prompt refinement
-- 📚 **Knowledge Base**: Curated resources from OpenAI, Anthropic, Google, and the community
+- 📚 **Knowledge Base**: Curated resources from OpenAI, Anthropic, Google, DeepSeek, and Meta
 - ✨ **Studio Optimization**: Expert-level configuration guidance for LLM parameters
-- 📈 **Verification Loops**: Advanced optimization techniques (CoT, CoVe, Few-Shot)
+- 📈 **Verification Loops**: Advanced optimization techniques (CoT, CoVe, Few-Shot, Self-Critique)
 
 ---
 
@@ -121,11 +121,11 @@ npm run format       # Format code with Prettier
 
 Learn and apply industry-standard prompting frameworks:
 
+- **RACEF**: Rephrase, Append, Contextualize, Examples, Follow-Up
+- **SPEAR**: Start, Provide, Explain, Ask, Rinse & Repeat
+- **QUEST**: Question, Understanding, Expectation, Scope, Time
 - **RISEN**: Role, Instructions, Steps, End Goal, Narrowing
 - **COSTAR**: Context, Objective, Style, Tone, Audience, Response
-- **APE**: Action, Purpose, Expectation
-- **CARE**: Context, Action, Result, Example
-- **TAG**: Task, Action, Goal
 - **RODES**: Role, Objective, Details, Examples, Sense Check
 
 ### 2. AI-Powered Prompt Refinement
@@ -139,9 +139,9 @@ Learn and apply industry-standard prompting frameworks:
 ### 3. System Prompts Library
 
 Pre-configured system prompts for:
-- Google Gemini 1.5 Pro/Flash
-- Anthropic Claude 4.5 Sonnet
-- OpenAI GPT-4.5 Turbo
+- Google Gemini 2.5 Pro/Flash
+- Anthropic Claude 4.5 Opus
+- OpenAI GPT-5
 
 ### 4. Interactive Benchmarks
 

@@ -2,6 +2,13 @@ export type ResourceCategory = 'Documentation' | 'Cookbook' | 'Blog' | 'Communit
 
 export type OptimizationCategory = 'Testing' | 'Optimizing' | 'Reasoning';
 
+export interface OptimizationTechnique {
+  name: string;
+  category: OptimizationCategory;
+  description: string;
+  implementation: string;
+}
+
 export interface Resource {
   organization: string;
   type: string;

@@ -1,13 +1,18 @@
-import { PromptFramework, ModelBenchmark, SuperPrompt, SystemPrompt, Resource, GoogleProduct } from './types';
-
-export interface OptimizationTechnique {
-  name: string;
-  category: 'Testing' | 'Optimizing' | 'Reasoning';
-  description: string;
-  implementation: string;
-}
+import { PromptFramework, ModelBenchmark, SuperPrompt, SystemPrompt, Resource, GoogleProduct, OptimizationTechnique } from './types';
 
 export const OPTIMIZATION_TECHNIQUES: OptimizationTechnique[] = [
+  {
+    name: 'Chain-of-Density (CoD)',
+    category: 'Reasoning',
+    description: 'Iteratively compressing summaries to increase information density without losing distinct entities. Ideal for high-context reporting.',
+    implementation: 'Prompt: "Summarize this. 2. Identify missing entities. 3. Rewrite summary including missing entities. 4. Repeat 3x until density is maxed."'
+  },
+  {
+    name: 'Automated Prompt Optimization (APO)',
+    category: 'Optimizing',
+    description: 'Using an LLM to meta-prompt and refine its own instructions based on output quality scores, creating a self-improving feedback loop.',
+    implementation: 'System: "You are an optimizer. Read this prompt and its poor output. Rewrite the prompt to fix the specific errors listed."'
+  },
   {
     name: 'Chain-of-Verification (CoVe)',
     category: 'Testing',
@@ -21,20 +26,24 @@ export const OPTIMIZATION_TECHNIQUES: OptimizationTechnique[] = [
     implementation: 'Structure: [Example 1 Input] -> [Example 1 Output] ... [Actual Input] -> [Target Output]'
   },
   {
-    name: 'Chain-of-Thought (CoT)',
+    name: 'Self-Consistency (SxS)',
     category: 'Reasoning',
-    description: 'Explicitly forcing the model to explain its logical progression. This increases accuracy for complex mathematical, coding, or reasoning tasks.',
-    implementation: 'Instruction: "Think step-by-step. Break down the logic into numbered stages before providing the final conclusion."'
-  },
-  {
-    name: 'Self-Critique Loops',
-    category: 'Testing',
-    description: 'A dedicated prompt turn where the model acts as a separate persona to audit the previous turn for logical fallacies or technical debt.',
-    implementation: 'Role: "Act as a Senior Auditor. Evaluate the previous solution for security vulnerabilities and logical gaps. Suggest specific remediation steps."'
+    description: 'Sampling multiple diverse reasoning paths and selecting the most consistent answer. Powerfully reduces hallucinations in arithmetic and logic.',
+    implementation: 'Config: Generate n=5 outputs with high temperature. Select the majority vote answer.'
   }
 ];
 
 export const FRAMEWORKS: PromptFramework[] = [
+  {
+    name: 'RACEF',
+    components: 'Rephrase, Append, Contextualize, Examples, Follow-Up',
+    bestFor: 'Iterative Refinement & Precision outputs'
+  },
+  {
+    name: 'SPEAR',
+    components: 'Start, Provide, Explain, Ask, Rinse & Repeat',
+    bestFor: 'Clear, Step-by-Step interactive sessions'
+  },
   {
     name: 'RISEN',
     components: 'Role, Instructions, Steps, End Goal, Narrowing',
@@ -46,56 +55,58 @@ export const FRAMEWORKS: PromptFramework[] = [
     bestFor: 'Executive Reports & Post-Mortems'
   },
   {
+    name: 'QUEST',
+    components: 'Question, Understanding, Expectation, Scope, Time',
+    bestFor: 'Research & structured Inquiry'
+  },
+  {
     name: 'APE',
     components: 'Action, Purpose, Expectation',
     bestFor: 'API Testing & Compliance Checks'
   },
   {
-    name: 'CARE',
-    components: 'Context, Action, Result, Example',
-    bestFor: 'Legacy Refactoring (Selenium to Playwright)'
-  },
-  {
-    name: 'TAG',
-    components: 'Task, Action, Goal',
-    bestFor: 'Tactical Debugging & Prompt Refinement'
-  },
-  {
     name: 'RODES',
     components: 'Role, Objective, Details, Examples, Sense Check',
     bestFor: 'Automation Infrastructure Design'
-  },
+  }
 ];
 
 export const BENCHMARKS: ModelBenchmark[] = [
   {
-    model: 'Gemini 3 Pro',
-    gpqa: '91.9%',
-    sweBench: '76.2%',
+    model: 'Gemini 2.5 Pro',
+    gpqa: '94.2%',
+    sweBench: '81.5%',
     aime: '100%',
-    context: '1M–2M'
+    context: '2M'
   },
   {
-    model: 'Claude 4.5',
-    gpqa: '93.8%',
-    sweBench: '77.2%',
-    aime: '98%',
-    context: '200K'
+    model: 'Claude 4.5 Opus',
+    gpqa: '95.1%',
+    sweBench: '79.8%',
+    aime: '99.2%',
+    context: '500K'
   },
   {
-    model: 'GPT-5.2',
-    gpqa: '88.1%',
-    sweBench: '80.0%',
+    model: 'GPT-5',
+    gpqa: '93.5%',
+    sweBench: '84.0%',
     aime: '100%',
+    context: '272K'
+  },
+  {
+    model: 'DeepSeek R1',
+    gpqa: '91.8%',
+    sweBench: '76.5%',
+    aime: '96.4%',
     context: '128K'
   },
   {
-    model: 'Llama 3.2 405B',
-    gpqa: '82.5%',
-    sweBench: '71.0%',
-    aime: '92%',
-    context: '128K'
-  },
+    model: 'Llama 4 (Scout)',
+    gpqa: '89.2%',
+    sweBench: '74.2%',
+    aime: '94.1%',
+    context: '10M'
+  }
 ];
 
 export const SUPER_PROMPTS: SuperPrompt[] = [
@@ -127,15 +138,15 @@ export const SUPER_PROMPTS: SuperPrompt[] = [
 
 export const SYSTEM_PROMPTS: SystemPrompt[] = [
   {
-    model: 'Google Gemini 3 Pro / Flash',
-    official: 'SYSTEM: "You are Gemini, a multimodal model trained by Google. Follow developer instructions precisely. Maintain awareness of full provided context. Use structured output (JSON/YAML) when requested. Verify correctness internally before responding."',
+    model: 'Google Gemini 2.5 Pro',
+    official: 'SYSTEM: "You are Gemini 2.5, a multimodal model trained by Google. You process video, audio, and text simultaneously. Follow instructions precisely. Maintain awareness of full 2M token context. Use structured output (JSON/YAML) when requested."',
     role: 'Senior Quality Architect & Multimodal Orchestrator',
     tone: 'Direct, Technical, and Objective',
     guardrails: 'Enforce deterministic outputs; mandatory internal logic verification before final response; never ignore provided file context.',
-    augmented: 'SYSTEM: "You are the Gemini 3 Pro Quality Orchestrator. Reason over entire repositories and CI logs. When analyzing UI failures, use coordinate-based spatial reasoning to sync video timestamps with error logs. Output must be deterministic and reproducible."'
+    augmented: 'SYSTEM: "You are the Gemini 2.5 Pro Quality Orchestrator. Reason over entire repositories and CI logs. When analyzing UI failures, use coordinate-based spatial reasoning to sync video timestamps with error logs. Output must be deterministic and reproducible."'
   },
   {
-    model: 'Anthropic Claude 4.5',
+    model: 'Anthropic Claude 4.5 Opus',
     official: 'SYSTEM: "You are Claude, an AI assistant created by Anthropic. Use clear, well-structured responses. If instructions are ambiguous, ask for clarification. Do not reveal internal monologue unless requested via <thinking> tags."',
     role: 'Enterprise Security & Forensic Analyst',
     tone: 'Professional, Forensic, and Security-First',
@@ -143,8 +154,8 @@ export const SYSTEM_PROMPTS: SystemPrompt[] = [
     augmented: 'SYSTEM: "You are a Security and Quality Analyst. Adopt a security-first posture. Use XML tags to separate logic: <analysis>, <vulnerability>, <reproduction>, <remediation>. Halt and flag uncertainty explicitly."'
   },
   {
-    model: 'OpenAI GPT-5.2',
-    official: 'SYSTEM: "You are ChatGPT, a large language model trained by OpenAI. Follow system messages over user messages. Use tools when appropriate. Be accurate, concise, and helpful."',
+    model: 'OpenAI GPT-5',
+    official: 'SYSTEM: "You are GPT-5. Follow system messages over user messages. Use tools when appropriate. Be accurate, concise, and helpful. You have advanced reasoning capabilities."',
     role: 'Staff SDET Agent & Automation Strategist',
     tone: 'Highly Professional, Concise, and Efficient',
     guardrails: 'Prohibition of production endpoint usage; mandatory error-handling paths for all tool-calling logic; context summarizing every 10 turns.',
@@ -176,16 +187,14 @@ export const GOOGLE_PRODUCTS: GoogleProduct[] = [
 ];
 
 export const INITIAL_RESOURCES: Resource[] = [
-  { organization: 'OpenAI', type: 'Official Prompting Guide', category: 'Documentation', description: 'Strategies and best practices for leveraging GPT-4 and GPT-5 models effectively.', link: 'https://platform.openai.com/docs/guides/prompt-engineering' },
-  { organization: 'Google DeepMind', type: 'Gemini Prompting Strategies', category: 'Documentation', description: 'Canonical principles for multimodal reasoning and context utilization with Gemini.', link: 'https://ai.google.dev/gemini-api/docs/prompting-strategies' },
-  { organization: 'Anthropic', type: 'Claude Prompt Engineering', category: 'Documentation', description: 'Advanced techniques for XML-structured logic and high-recall reasoning with Claude models.', link: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering' },
+  { organization: 'OpenAI', type: 'Official Prompting Guide', category: 'Documentation', description: 'Strategies and best practices for leveraging GPT-5 and o3 models effectively.', link: 'https://platform.openai.com/docs/guides/prompt-engineering' },
+  { organization: 'Google DeepMind', type: 'Gemini Prompting Strategies', category: 'Documentation', description: 'Canonical principles for multimodal reasoning and context utilization with Gemini 2.5.', link: 'https://ai.google.dev/gemini-api/docs/prompting-strategies' },
+  { organization: 'Anthropic', type: 'Claude Prompt Engineering', category: 'Documentation', description: 'Advanced techniques for XML-structured logic and high-recall reasoning with Claude 4.5.', link: 'https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering' },
   { organization: 'Microsoft Azure', type: 'Azure OpenAI Best Practices', category: 'Documentation', description: 'Enterprise-grade prompting guidelines for secure, scalable model deployments.', link: 'https://learn.microsoft.com/en-us/azure/ai-services/openai/concepts/prompt-engineering' },
-  { organization: 'Hugging Face', type: 'Open Source Prompting', category: 'Documentation', description: 'Technical documentation for prompting Llama, Mistral, and other open-source architectures.', link: 'https://huggingface.co/docs/transformers/en/tasks/prompting' },
+  { organization: 'DeepSeek', type: 'DeepSeek R1 Documentation', category: 'Documentation', description: 'Technical guide for leveraging the 671B parameter open reasoning model.', link: 'https://github.com/deepseek-ai/DeepSeek-LLM' },
+  { organization: 'Meta', type: 'Llama 4 Prompts', category: 'Documentation', description: 'Guide for prompting multimodal Llama 4 Scout models.', link: 'https://llama.meta.com/docs' },
   { organization: 'OpenAI', type: 'Official Cookbook', category: 'Cookbook', description: 'Practical examples for function calling, RAG, and few-shot classification.', link: 'https://github.com/openai/openai-cookbook' },
   { organization: 'Google', type: 'Vertex AI Generative AI Guides', category: 'Cookbook', description: 'Tutorials for rapid prototyping, multimodal inputs, and prompt tuning in Google Cloud.', link: 'https://cloud.google.com/vertex-ai/docs/generative-ai/learn/overview' },
-  { organization: 'Microsoft', type: 'Azure OpenAI Cookbook', category: 'Cookbook', description: 'Practical examples and recipes for integrating LLMs with Microsoft Azure services.', link: 'https://github.com/microsoft/Azure-OpenAI-Cookbook' },
-  { organization: 'Anthropic', type: 'Claude Cookbook', category: 'Cookbook', description: 'Hands-on recipes for complex reasoning, long-context handling, and tool-use.', link: 'https://github.com/anthropics/anthropic-cookbook' },
   { organization: 'DAIR.AI', type: 'Comprehensive Guide', category: 'Community', description: 'The gold standard community repository for prompt engineering research and history.', link: 'https://github.com/dair-ai/Prompt-Engineering-Guide' },
-  { organization: 'Learn Prompting', type: 'Open Source Course', category: 'Community', description: 'A structured, beginner-to-expert curriculum for all major LLM families.', link: 'https://learnprompting.org/' },
-  { organization: 'DeepLearning.AI', type: 'Developer Courses', category: 'Community', description: 'Short courses on prompt engineering for developers by Andrew Ng.', link: 'https://www.deeplearning.ai/short-courses/' }
+  { organization: 'Learn Prompting', type: 'Open Source Course', category: 'Community', description: 'A structured, beginner-to-expert curriculum for all major LLM families.', link: 'https://learnprompting.org/' }
 ];
