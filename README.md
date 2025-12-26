@@ -1,6 +1,6 @@
 # Enterprise Prompt Engineering Portal 2025
 
-[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
+[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue.svg)](https://www.typescriptlang.org/)
