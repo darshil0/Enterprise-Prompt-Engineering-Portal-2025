@@ -1,6 +1,6 @@
 # Enterprise Prompt Engineering Portal 2025
 
-[![Version](https://img.shields.io/badge/version-2.0.1-blue.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
+[![Version](https://img.shields.io/badge/version-2.0.2-blue.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 [![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg)](https://reactjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue.svg)](https://www.typescriptlang.org/)
@@ -169,6 +169,16 @@ Curated links to:
 | `VITE_API_KEY` | Alternative API key variable name | No |
 
 Get your API key: https://aistudio.google.com/app/apikey
+
+---
+
+## 🚀 Version 2.0.2 - 2025 Content Update
+
+### Model & Framework Enhancements
+- **Next-Gen Models**: Integrated benchmarks and system prompts for **Gemini 3.0 Pro**, **Gemini 3 Deep Think**, **GPT-5**, **Claude 4.5 Opus**, and **DeepSeek R1**.
+- **New Frameworks**: Added **RACEF** (Rephrase, Append, Contextualize, Examples, Follow-Up), **SPEAR**, and **QUEST**.
+- **Reasoning Capabilities**: Added specific support for recursive reasoning chains and "Deep Think" meta-prompts.
+- **Optimization Algorithms**: Added Chain-of-Density (CoD) and Automated Prompt Optimization (APO) techniques.
 
 ---
 
