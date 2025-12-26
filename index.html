@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Essential Meta Tags -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- Primary Meta Tags -->
+    <title>Prompt Architect | Enterprise Intelligence</title>
+    <meta name="title" content="Prompt Architect | Enterprise Intelligence">
+    <meta name="description" content="Comprehensive AI-powered manual for modern prompt engineering. Master frameworks, super-prompts, and model benchmarking for enterprise AI solutions.">
+    <meta name="keywords" content="prompt engineering, AI, LLM, Gemini, Claude, GPT, frameworks, RISEN, COSTAR, enterprise AI">
+    <meta name="author" content="Enterprise Intelligence">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://ai.studio/apps/drive/1Bl5nuWJjHhv0OVluoWsCjYYVQEW1KCHS">
+    <meta property="og:title" content="Prompt Architect | Enterprise Intelligence">
+    <meta property="og:description" content="Master prompt engineering with AI-powered frameworks, benchmarks, and real-time refinement tools.">
+    <meta property="og:image" content="/og-image.png">
+    
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://ai.studio/apps/drive/1Bl5nuWJjHhv0OVluoWsCjYYVQEW1KCHS">
+    <meta property="twitter:title" content="Prompt Architect | Enterprise Intelligence">
+    <meta property="twitter:description" content="Master prompt engineering with AI-powered frameworks, benchmarks, and real-time refinement tools.">
+    <meta property="twitter:image" content="/twitter-image.png">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#3b55ff">
+    <meta name="msapplication-TileColor" content="#3b55ff">
+    
+    <!-- Favicon (add these files to public folder) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+    
+    <!-- Performance: Preconnect to external domains -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.tailwindcss.com">
+    <link rel="preconnect" href="https://esm.sh">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts with display=swap for better performance -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Plus Jakarta Sans', 'system-ui', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'],
+                    },
+                    colors: {
+                        brand: {
+                            50: '#f0f4ff',
+                            100: '#d9e2ff',
+                            200: '#bacaff',
+                            300: '#8ca7ff',
+                            400: '#5977ff',
+                            500: '#3b55ff', // Vibrant electric sapphire
+                            600: '#2538ff',
+                            700: '#1a26eb',
+                            800: '#161fbe',
+                            900: '#182096',
+                            950: '#0f1259',
+                        },
+                        surface: {
+                            50: '#fafafa',
+                            100: '#f4f4f5',
+                            200: '#e4e4e7',
+                            300: '#d4d4d8',
+                            400: '#a1a1aa',
+                            500: '#71717a',
+                            600: '#52525b',
+                            700: '#3f3f46',
+                            800: '#27272a',
+                            900: '#18181b',
+                            950: '#09090b',
+                        }
+                    },
+                    backgroundImage: {
+                        'mesh': "radial-gradient(at 0% 0%, rgba(59, 85, 255, 0.14) 0px, transparent 50%), radial-gradient(at 100% 0%, rgba(139, 92, 246, 0.14) 0px, transparent 50%), radial-gradient(at 100% 100%, rgba(59, 85, 255, 0.08) 0px, transparent 50%), radial-gradient(at 0% 100%, rgba(139, 92, 246, 0.08) 0px, transparent 50%)",
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-subtle': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'spin-slow': 'spin 3s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        }
+                    }
+                },
+            },
+        }
+    </script>
+    
+    <!-- Custom Styles -->
+    <style>
+        body {
+            background-color: #fafafa;
+            color: #18181b;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+        
+        /* Glass morphism effects */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(24px);
+            -webkit-backdrop-filter: blur(24px);
+            border: 1px solid rgba(255, 255, 255, 0.85);
+            box-shadow: 0 4px 30px -1px rgba(0, 0, 0, 0.04);
+        }
+        
+        .glass-sidebar {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(32px);
+            -webkit-backdrop-filter: blur(32px);
+            border-right: 1px solid rgba(228, 228, 231, 0.7);
+        }
+        
+        /* Gradient text effect */
+        .text-gradient {
+            background: linear-gradient(135deg, #3b55ff 0%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { 
+            width: 6px; 
+            height: 6px; 
+        }
+        ::-webkit-scrollbar-track { 
+            background: transparent; 
+        }
+        ::-webkit-scrollbar-thumb { 
+            background: #e4e4e7; 
+            border-radius: 12px; 
+        }
+        ::-webkit-scrollbar-thumb:hover { 
+            background: #d4d4d8; 
+        }
+        
+        /* Custom selection */
+        ::selection {
+            background-color: #d9e2ff;
+            color: #0f1259;
+        }
+        ::-moz-selection {
+            background-color: #d9e2ff;
+            color: #0f1259;
+        }
+        
+        /* Loading spinner */
+        .loading-spinner {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fafafa 100%);
+        }
+        
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 4px solid #e4e4e7;
+            border-top-color: #3b55ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Hide spinner when React loads */
+        #root:not(:empty) + .loading-spinner {
+            display: none;
+        }
+        
+        /* Smooth scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        /* Focus visible for accessibility */
+        *:focus-visible {
+            outline: 2px solid #3b55ff;
+            outline-offset: 2px;
+        }
+        
+        /* Reduce motion for accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+<script type="importmap">
+{
+  "imports": {
+    "@google/genai": "https://esm.sh/@google/genai@^1.34.0",
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "lucide-react": "https://esm.sh/lucide-react@^0.474.0"
+  }
+}
+</script>
+</head>
+<body class="bg-mesh">
+    <!-- Main App Container -->
+    <div id="root"></div>
+    
+    <!-- Loading Spinner (shown until React loads) -->
+    <div class="loading-spinner">
+        <div class="spinner"></div>
+    </div>
+    
+    <!-- Accessibility: Skip to main content -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-50 focus:px-4 focus:py-2 focus:bg-brand-500 focus:text-white focus:rounded-lg">
+        Skip to main content
+    </a>
+    
+    <!-- No Script Fallback -->
+    <noscript>
+        <div style="
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 2rem;
+            text-align: center;
+            font-family: system-ui, sans-serif;
+            background: linear-gradient(135deg, #f0f4ff 0%, #fafafa 100%);
+        ">
+            <h1 style="font-size: 2rem; font-weight: 800; margin-bottom: 1rem; color: #18181b;">
+                JavaScript Required
+            </h1>
+            <p style="color: #71717a; margin-bottom: 2rem; max-width: 500px;">
+                Prompt Architect requires JavaScript to run. Please enable JavaScript in your browser settings to continue.
+            </p>
+            <div style="padding: 1rem 2rem; background: #3b55ff; color: white; border-radius: 0.5rem; font-weight: 600;">
+                Enable JavaScript
+            </div>
+        </div>
+    </noscript>
+    <script type="module" src="/index.tsx"></script>
+</body>
+</html>
