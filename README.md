@@ -14,7 +14,7 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 - 🧩 **2025 Frameworks**: RISEN, COSTAR, RACEF, SPEAR, QUEST, and RODES for next-gen prompting
 - ⚡ **Super-Input Logic**: Pre-built prompt templates for QA, development, and strategic planning
-- ⚙️ **System Architecture**: Foundational system prompts for Claude 4.5, GPT-5, and Gemini 2.5 models
+- ⚙️ **System Architecture**: Foundational system prompts for Claude 4.5, GPT-5, and Gemini 3 / Deep Think models
 - 📊 **Signal Performance**: Real-time model benchmarking with interactive charts
 - 💎 **Google AI Ecosystem**: Integration with Gemini API for prompt refinement
 - 📚 **Knowledge Base**: Curated resources from OpenAI, Anthropic, Google, DeepSeek, and Meta
