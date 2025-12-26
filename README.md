@@ -137,11 +137,11 @@ Learn and apply industry-standard prompting frameworks:
 - Real-time processing with error handling
 
 ### 3. System Prompts Library
-
-Pre-configured system prompts for:
-- Google Gemini 2.5 Pro/Flash
-- Anthropic Claude 4.5 Opus
-- OpenAI GPT-5
+    
+    Pre-configured system prompts for:
+    - Google Gemini 3 Pro / Deep Think
+    - Anthropic Claude 4.5 Opus
+    - OpenAI GPT-5 / o3
 
 ### 4. Interactive Benchmarks
 

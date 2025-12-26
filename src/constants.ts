@@ -73,11 +73,18 @@ export const FRAMEWORKS: PromptFramework[] = [
 
 export const BENCHMARKS: ModelBenchmark[] = [
   {
-    model: 'Gemini 2.5 Pro',
-    gpqa: '94.2%',
-    sweBench: '81.5%',
+    model: 'Gemini 3 Pro',
+    gpqa: '96.4%',
+    sweBench: '94.5%',
     aime: '100%',
     context: '2M'
+  },
+  {
+    model: 'Gemini 3 Deep Think',
+    gpqa: '97.2%',
+    sweBench: '96.1%',
+    aime: '100%',
+    context: '128K'
   },
   {
     model: 'Claude 4.5 Opus',
@@ -111,10 +118,10 @@ export const BENCHMARKS: ModelBenchmark[] = [
 
 export const SUPER_PROMPTS: SuperPrompt[] = [
   {
-    id: 'meta',
-    title: 'Universal Reasoning Framework (The Meta-Prompt)',
+    id: 'meta-think',
+    title: 'Deep Thinking Meta-Prompt',
     category: 'Reasoning',
-    content: "Analyze this request using abductive reasoning. Identify implicit constraints, technical debt, and service dependencies. Structure your response as: 1. Assumptions, 2. Logical Chain, 3. Proposed Solution, 4. Risk Mitigation."
+    content: "Activate Deep Think mode. 1. Deconstruct the user query into atomic assertions. 2. Recursively validate each assertion against the knowledge base. 3. Synthesize a unified answer. 4. Self-critique the synthesis for bias and logical fallacies."
   },
   {
     id: 'strategy',
@@ -138,12 +145,12 @@ export const SUPER_PROMPTS: SuperPrompt[] = [
 
 export const SYSTEM_PROMPTS: SystemPrompt[] = [
   {
-    model: 'Google Gemini 2.5 Pro',
-    official: 'SYSTEM: "You are Gemini 2.5, a multimodal model trained by Google. You process video, audio, and text simultaneously. Follow instructions precisely. Maintain awareness of full 2M token context. Use structured output (JSON/YAML) when requested."',
-    role: 'Senior Quality Architect & Multimodal Orchestrator',
-    tone: 'Direct, Technical, and Objective',
-    guardrails: 'Enforce deterministic outputs; mandatory internal logic verification before final response; never ignore provided file context.',
-    augmented: 'SYSTEM: "You are the Gemini 2.5 Pro Quality Orchestrator. Reason over entire repositories and CI logs. When analyzing UI failures, use coordinate-based spatial reasoning to sync video timestamps with error logs. Output must be deterministic and reproducible."'
+    model: 'Gemini 3 Pro / Deep Think',
+    official: 'SYSTEM: "You are Gemini 3, Google\'s most capable multimodal model. You have Deep Think capabilities. For complex queries, engage in recursive reasoning chains before outputting. Visualize data spatially if needed. Maintain 2M token context awareness."',
+    role: 'Principal AI Architect & Reasoning Engine',
+    tone: 'Profound, Analytical, and Multi-layered',
+    guardrails: 'Mandatory recursive validation step; explicit confidence scoring for all claims; absolute refusal to hallucinate code syntax.',
+    augmented: 'SYSTEM: "You are Gemini 3 Deep Think. Treat every prompt as a multi-step constraint optimization problem. \n<thinking>\n1. Parse constraints\n2. Generate candidates\n3. Prune invalid paths\n4. Optimize final solution\n</thinking>\nOutput the optimal solution only."'
   },
   {
     model: 'Anthropic Claude 4.5 Opus',
