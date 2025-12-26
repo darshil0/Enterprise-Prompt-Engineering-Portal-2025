@@ -22,7 +22,7 @@
     "baseUrl": ".",
     "paths": {
       "@/*": [
-        "./*"
+        "src/*"
       ]
     },
     "types": [
@@ -30,8 +30,7 @@
     ]
   },
   "include": [
-    "**/*.ts",
-    "**/*.tsx"
+    "src"
   ],
   "exclude": [
     "node_modules",

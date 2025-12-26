@@ -71,19 +71,21 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 ```
 enterprise-prompt-portal/
-├── components/
-│   ├── Layout.tsx              # Main layout with sidebar navigation
-│   ├── ErrorBoundary.tsx       # Error boundary for React errors
-│   ├── BenchmarkChart.tsx      # Interactive benchmark visualization
-│   └── Manual.tsx              # Comprehensive AI resources guide
-├── services/
-│   └── geminiService.ts        # Gemini API integration with retry logic
-├── constants.ts                # Data constants and configurations
-├── types.ts                    # TypeScript type definitions
-├── App.tsx                     # Main application component
-├── index.tsx                   # Application entry point
-├── index.html                  # HTML template
-├── index.css                   # Global styles with Tailwind
+├── src/
+│   ├── components/             # UI Components
+│   │   ├── Layout.tsx          # Main layout with sidebar navigation
+│   │   ├── ErrorBoundary.tsx   # Error boundary for React errors
+│   │   ├── BenchmarkChart.tsx  # Interactive benchmark visualization
+│   │   └── Manual.tsx          # Comprehensive AI resources guide
+│   ├── services/               # API Services
+│   │   └── geminiService.ts    # Gemini API integration
+│   ├── constants.ts            # Data constants and configurations
+│   ├── types.ts                # TypeScript type definitions
+│   ├── App.tsx                 # Main application component
+│   ├── index.tsx               # Application entry point
+│   └── vite-env.d.ts           # Vite type definitions
+├── index.html                  # HTML entry point
+├── index.css                   # Global styles
 ├── vite.config.ts              # Vite configuration
 ├── tsconfig.json               # TypeScript configuration
 ├── tailwind.config.js          # Tailwind CSS configuration
@@ -174,11 +176,15 @@ Get your API key: https://aistudio.google.com/app/apikey
 
 ### Critical Fixes
 
+✅ **Architecture & Structure**
+- Streamlined folder structure: Moved source code to standard `src/` directory
+- Updated `index.html` entry point to `/src/index.tsx`
+- Configured path aliases (`@/`) to point to `src/`
+
 ✅ **Configuration & Build**
-- Corrected `tsconfig.json` to look for files in root directory (`./`) instead of non-existent `src`
+- Corrected `tsconfig.json` to look for files in `src` directory
 - Fixed `vite.config.ts` path resolution for ESM compatibility (replaced `__dirname`)
 - Added `vite-env.d.ts` for proper `import.meta.env` typing
-- Added missing entry script tag in `index.html`
 
 ✅ **Logic & Runtime**
 - Fixed variable naming bug (`idx` vs `index`) in `App.tsx` preventing component rendering
