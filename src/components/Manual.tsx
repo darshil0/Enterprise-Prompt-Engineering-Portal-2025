@@ -229,15 +229,263 @@ export const Manual: React.FC = () => {
             </div>
           )}
 
-          {/* Other tabs follow similar pattern - truncated for brevity */}
           {activeTab === 'prompting' && (
-            <div className="space-y-16 fade-in-up">
-              <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-8">3. Prompt Engineering</h3>
-              {/* RISEN and COSTAR content with proper typing and styling */}
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">3. Prompt Engineering</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Advanced frameworks for structuring machine-readable intent.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6">
+                  <h4 className="text-2xl font-black text-zinc-900">COSTAR Framework</h4>
+                  <ul className="space-y-4">
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">C</span>
+                      <span className="text-zinc-600">Context: Background information</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">O</span>
+                      <span className="text-zinc-600">Objective: The specific task</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">S</span>
+                      <span className="text-zinc-600">Style: Writing style or persona</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">T</span>
+                      <span className="text-zinc-600">Tone: Emotional resonance</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">A</span>
+                      <span className="text-zinc-600">Audience: Who is it for?</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">R</span>
+                      <span className="text-zinc-600">Response: Format requirements</span>
+                    </li>
+                  </ul>
+                </div>
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6">
+                  <h4 className="text-2xl font-black text-zinc-900">RISEN Framework</h4>
+                  <ul className="space-y-4">
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">R</span>
+                      <span className="text-zinc-600">Role: Assign a specific persona</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">I</span>
+                      <span className="text-zinc-600">Instructions: Clear, step-by-step commands</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">S</span>
+                      <span className="text-zinc-600">Steps: Specific workflow to follow</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">E</span>
+                      <span className="text-zinc-600">End Goal: The desired final state</span>
+                    </li>
+                    <li className="flex gap-4">
+                      <span className="font-black text-brand-600">N</span>
+                      <span className="text-zinc-600">Narrowing: Constraints and negative prompts</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
           )}
-          
-          {/* Additional tabs would follow the same refined pattern */}
+
+          {activeTab === 'qa' && (
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">4. Testing & Quality Assurance</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Systematic evaluation of LLM outputs for enterprise reliability.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div className="p-8 bg-zinc-50 border border-zinc-200 rounded-2xl">
+                  <h4 className="text-lg font-black text-zinc-900 mb-4">Promptfoo</h4>
+                  <p className="text-sm text-zinc-600 mb-6">CLI tool for testing prompt quality against test cases with various assertions.</p>
+                  <a href="https://www.promptfoo.dev" target="_blank" rel="noopener noreferrer" className="text-xs font-black text-brand-600 uppercase">View Site →</a>
+                </div>
+                <div className="p-8 bg-zinc-50 border border-zinc-200 rounded-2xl">
+                  <h4 className="text-lg font-black text-zinc-900 mb-4">LangSmith</h4>
+                  <p className="text-sm text-zinc-600 mb-6">Tracing and evaluation platform for LLM applications and agents.</p>
+                  <a href="https://smith.langchain.com" target="_blank" rel="noopener noreferrer" className="text-xs font-black text-brand-600 uppercase">View Site →</a>
+                </div>
+                <div className="p-8 bg-zinc-50 border border-zinc-200 rounded-2xl">
+                  <h4 className="text-lg font-black text-zinc-900 mb-4">Arize Phoenix</h4>
+                  <p className="text-sm text-zinc-600 mb-6">Open-source observability and evaluation library for RAG and LLMs.</p>
+                  <a href="https://phoenix.arize.com" target="_blank" rel="noopener noreferrer" className="text-xs font-black text-brand-600 uppercase">View Site →</a>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'compliance' && (
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">5. Compliance & Security</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Ensuring safety, privacy, and regulatory adherence in AI deployments.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div className="p-10 bg-rose-50 border border-rose-100 rounded-3xl">
+                  <h4 className="text-2xl font-black text-rose-900 mb-4">Prompt Injection Defense</h4>
+                  <p className="text-sm text-rose-700 leading-relaxed mb-6">Implement structural guardrails to prevent adversarial inputs from overriding system instructions.</p>
+                  <ul className="text-xs font-bold text-rose-800 space-y-2">
+                    <li>• Use of Delimiters (e.g., ###, ---)</li>
+                    <li>• XML Tag Sandboxing</li>
+                    <li>• Input Sanitization Filters</li>
+                  </ul>
+                </div>
+                <div className="p-10 bg-emerald-50 border border-emerald-100 rounded-3xl">
+                  <h4 className="text-2xl font-black text-emerald-900 mb-4">Data Privacy (PII)</h4>
+                  <p className="text-sm text-emerald-700 leading-relaxed mb-6">Automated detection and redaction of Personally Identifiable Information before sending data to external APIs.</p>
+                  <ul className="text-xs font-bold text-emerald-800 space-y-2">
+                    <li>• Differential Privacy</li>
+                    <li>• Local Anonymization Layers</li>
+                    <li>• Zero-Retention Policies</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'learning' && (
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">6. Learning Resources</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Curated pathways for mastering the evolving landscape of AI.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div className="space-y-8">
+                  <h4 className="text-xl font-black text-zinc-900 uppercase tracking-widest">Recommended Courses</h4>
+                  <div className="space-y-4">
+                    <a href="https://www.deeplearning.ai/short-courses/chatgpt-prompt-engineering-for-developers/" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white border border-zinc-100 rounded-2xl hover:border-brand-500 transition-colors">
+                      <h5 className="font-black text-zinc-900">DeepLearning.AI</h5>
+                      <p className="text-sm text-zinc-500">Prompt Engineering for Developers</p>
+                    </a>
+                    <a href="https://learnprompting.org/" target="_blank" rel="noopener noreferrer" className="block p-6 bg-white border border-zinc-100 rounded-2xl hover:border-brand-500 transition-colors">
+                      <h5 className="font-black text-zinc-900">Learn Prompting</h5>
+                      <p className="text-sm text-zinc-500">Comprehensive Open Source Course</p>
+                    </a>
+                  </div>
+                </div>
+                <div className="space-y-8">
+                  <h4 className="text-xl font-black text-zinc-900 uppercase tracking-widest">Research Papers</h4>
+                  <div className="space-y-4">
+                    <div className="p-6 bg-zinc-900 text-white rounded-2xl">
+                      <h5 className="font-black">Chain-of-Thought</h5>
+                      <p className="text-xs text-zinc-400 mt-1">Wei et al. (2022) - Eliciting Reasoning in LLMs</p>
+                    </div>
+                    <div className="p-6 bg-zinc-900 text-white rounded-2xl">
+                      <h5 className="font-black">Self-Consistency</h5>
+                      <p className="text-xs text-zinc-400 mt-1">Wang et al. (2022) - Majority Voting in Reasoning</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'api' && (
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">7. API Quick Reference</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Fast-track integration with major model providers.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
+                <div className="p-10 bg-zinc-950 rounded-3xl border border-zinc-800 space-y-8">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-2xl font-black text-white">Gemini API</h4>
+                    <span className="text-xs font-bold text-brand-400">REST / SDK</span>
+                  </div>
+                  <pre className="text-xs text-brand-200 font-mono overflow-x-auto p-6 bg-black/40 rounded-xl">
+{`const model = genAI.getGenerativeModel({
+  model: "gemini-1.5-pro"
+});
+const result = await model.generateContent(prompt);`}
+                  </pre>
+                </div>
+                <div className="p-10 bg-zinc-950 rounded-3xl border border-zinc-800 space-y-8">
+                  <div className="flex items-center justify-between">
+                    <h4 className="text-2xl font-black text-white">OpenAI API</h4>
+                    <span className="text-xs font-bold text-brand-400">Python / Node.js</span>
+                  </div>
+                  <pre className="text-xs text-brand-200 font-mono overflow-x-auto p-6 bg-black/40 rounded-xl">
+{`client.chat.completions.create({
+  model: "gpt-4o",
+  messages: [{role: "user", content: prompt}]
+})`}
+                  </pre>
+                </div>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'community' && (
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">8. Community & Support</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Join the global network of AI engineers and researchers.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <a href="https://discord.gg/openai" target="_blank" rel="noopener noreferrer" className="p-8 bg-zinc-50 border border-zinc-200 rounded-3xl hover:border-brand-500 transition-all text-center group">
+                  <h4 className="text-xl font-black text-zinc-900 mb-2">OpenAI Discord</h4>
+                  <p className="text-sm text-zinc-500 group-hover:text-brand-600 transition-colors font-bold">Join Community →</p>
+                </a>
+                <a href="https://www.reddit.com/r/PromptEngineering/" target="_blank" rel="noopener noreferrer" className="p-8 bg-zinc-50 border border-zinc-200 rounded-3xl hover:border-brand-500 transition-all text-center group">
+                  <h4 className="text-xl font-black text-zinc-900 mb-2">r/PromptEngineering</h4>
+                  <p className="text-sm text-zinc-500 group-hover:text-brand-600 transition-colors font-bold">Visit Subreddit →</p>
+                </a>
+                <a href="https://github.com/dair-ai/Prompt-Engineering-Guide" target="_blank" rel="noopener noreferrer" className="p-8 bg-zinc-50 border border-zinc-200 rounded-3xl hover:border-brand-500 transition-all text-center group">
+                  <h4 className="text-xl font-black text-zinc-900 mb-2">DAIR.AI GitHub</h4>
+                  <p className="text-sm text-zinc-500 group-hover:text-brand-600 transition-colors font-bold">Contribute →</p>
+                </a>
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'status' && (
+            <div className="space-y-20 fade-in-up">
+              <div className="border-b border-zinc-100 pb-12">
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">9. Status & Monitoring</h3>
+                <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
+                  Real-time health monitoring of the AI infrastructure.
+                </p>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {[
+                  { name: 'OpenAI', link: 'https://status.openai.com' },
+                  { name: 'Anthropic', link: 'https://status.anthropic.com' },
+                  { name: 'Google Cloud', link: 'https://status.cloud.google.com' },
+                  { name: 'AWS', link: 'https://health.aws.amazon.com' }
+                ].map(status => (
+                  <a
+                    key={status.name}
+                    href={status.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-8 bg-white border border-zinc-100 rounded-[2rem] hover:shadow-xl transition-all flex flex-col items-center justify-center gap-4 group"
+                  >
+                    <div className="size-3 bg-emerald-500 rounded-full animate-pulse group-hover:scale-125 transition-transform" />
+                    <span className="text-sm font-black text-zinc-900 uppercase tracking-widest">{status.name}</span>
+                    <span className="text-[10px] font-bold text-zinc-400">Operational</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )}
         </main>
       </div>
     </div>
