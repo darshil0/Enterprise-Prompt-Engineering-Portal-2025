@@ -2,9 +2,16 @@
 
 [![Version](https://img.shields.io/badge/version-2.0.2-blue.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
+[![Node.js](https://img.shields.io/badge/Node.js-18+-339933.svg)](https://nodejs.org/)
+[![npm](https://img.shields.io/badge/npm-10+-CB3837.svg)](https://www.npmjs.com/)
 [![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-blue.svg)](https://www.typescriptlang.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-3178c6.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.2.0-646CFF.svg)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.1-06B6D4.svg)](https://tailwindcss.com/)
 [![Gemini](https://img.shields.io/badge/Gemini-1.5%20Pro-orange.svg)](https://ai.google.dev/)
+[![ESLint](https://img.shields.io/badge/ESLint-9.x-4B32C3.svg)](https://eslint.org/)
+[![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025/blob/main/CONTRIBUTING.md)
+[![Status](https://img.shields.io/badge/status-active-success.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
 
 ## 📖 Overview
 
@@ -350,4 +357,4 @@ MIT License – see [LICENSE](LICENSE) for details. Use freely in commercial and
 
 **Built with ❤️ by Darshil Shah**
 
-*Last Updated: June 2026*
+*Last Updated: January 2026*
