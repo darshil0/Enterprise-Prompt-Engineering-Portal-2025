@@ -1,7 +1,7 @@
 {
   "name": "Enterprise Prompt Engineering Portal 2025",
   "shortName": "Prompt Architect",
-  "version": "2.0.0",
+  "version": "2.0.2",
   "description": "An interactive, AI-powered manual for modern prompt engineering, featuring frameworks, super-prompts, and real-time model benchmarking.",
   "longDescription": "Master prompt engineering with the Enterprise Prompt Engineering Portal - a comprehensive platform featuring industry-standard frameworks (RISEN, COSTAR, APE), AI-powered prompt refinement via Gemini API, real-time model benchmarking, system architecture templates for Claude/GPT/Gemini, and curated resources from OpenAI, Anthropic, and Google. Perfect for QA engineers, developers, and AI practitioners seeking deterministic, production-ready prompt strategies.",
   "author": {
@@ -86,6 +86,16 @@
     "community": "https://discord.gg/example"
   },
   "changelog": {
+    "2.0.2": {
+      "date": "2025-12-25",
+      "changes": [
+        "Updated all dependencies to latest versions",
+        "Fixed TypeScript deprecation warnings and ESLint configuration",
+        "Resolved Recharts type errors in BenchmarkChart",
+        "Implemented all missing sections in the Enterprise Manual",
+        "Corrected path aliases and Vite configuration for ESM"
+      ]
+    },
     "2.0.0": {
       "date": "2025-12-23",
       "changes": [

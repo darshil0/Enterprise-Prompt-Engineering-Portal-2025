@@ -43,44 +43,45 @@ export default defineConfig(({ mode }) => {
     },
 
     // Path resolution
-    alias: {
-      '@': path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), 'src'),
+    resolve: {
+      alias: {
+        '@': path.resolve(path.dirname(url.fileURLToPath(import.meta.url)), 'src'),
+      },
     },
-  },
 
     // Build optimization
     build: {
-    outDir: 'dist',
+      outDir: 'dist',
       sourcemap: mode === 'development', // Sourcemaps only in dev
-        minify: 'esbuild', // Fast minification
-          target: 'es2015', // Browser compatibility
-            cssCodeSplit: true, // Split CSS for better caching
-              rollupOptions: {
-      output: {
-        // Manual chunk splitting for better caching
-        manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
+      minify: 'esbuild', // Fast minification
+      target: 'es2015', // Browser compatibility
+      cssCodeSplit: true, // Split CSS for better caching
+      rollupOptions: {
+        output: {
+          // Manual chunk splitting for better caching
+          manualChunks: {
+            'react-vendor': ['react', 'react-dom', 'scheduler'],
             'recharts-vendor': ['recharts'],
           },
+        },
       },
-    },
-    // Chunk size warnings
-    chunkSizeWarningLimit: 1000,
-    },
-
-  // Dependency optimization
-  optimizeDeps: {
-    include: [
-      'react',
-      'react-dom',
-      'recharts',
-      '@google/generative-ai',
-    ],
+      // Chunk size warnings
+      chunkSizeWarningLimit: 1000,
     },
 
-  // CSS configuration
-  css: {
-    devSourcemap: true, // CSS sourcemaps in dev
+    // Dependency optimization
+    optimizeDeps: {
+      include: [
+        'react',
+        'react-dom',
+        'recharts',
+        '@google/generative-ai',
+      ],
     },
-};
+
+    // CSS configuration
+    css: {
+      devSourcemap: true, // CSS sourcemaps in dev
+    },
+  };
 });

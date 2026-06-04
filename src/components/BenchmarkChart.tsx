@@ -91,9 +91,7 @@ export const BenchmarkChart: React.FC = () => {
             />
             <Tooltip 
               cursor={{ 
-                fill: '#fafafa', 
-                borderRadius: 12,
-                backdropFilter: 'blur(20px)'
+                fill: '#fafafa'
               }}
               contentStyle={{ 
                 backgroundColor: 'rgb(17 24 39 / 0.95)', 
@@ -119,7 +117,7 @@ export const BenchmarkChart: React.FC = () => {
                 letterSpacing: '0.1em',
                 fontFamily: "ui-monospace, SFMono-Regular, 'SF Mono', Consolas"
               }}
-              formatter={(value: number) => [`${value.toFixed(1)}%`, '']}
+              formatter={(value: any) => [`${Number(value).toFixed(1)}%`, '']}
             />
             <Bar 
               dataKey="GPQA" 
