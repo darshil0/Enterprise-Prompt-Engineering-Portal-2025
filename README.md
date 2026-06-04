@@ -172,11 +172,21 @@ Get your API key: https://aistudio.google.com/app/apikey
 
 ---
 
-## 🚀 Version 2.0.2 - 2025 Content Update
+## 🚀 Version 2.0.2 - 2025 Comprehensive Update
+
+### Full Enterprise Manual Implementation
+- **Completed Manual**: Implemented all missing sections in the Enterprise Resources Guide, providing a 360-degree view of AI operations.
+- **Security & Compliance**: Added deep-dives into Prompt Injection defense and PII protection strategies.
+- **QA & Observability**: Integrated best practices for Promptfoo, LangSmith, and Arize Phoenix.
+
+### Tech Stack Modernization
+- **Dependency Refresh**: Updated core and dev dependencies.
+- **TypeScript & ESLint**: Resolved all deprecation warnings and migrated to ESLint flat configuration for future-proof linting.
+- **Build Optimization**: Refined Vite and Rollup configurations for optimized chunking and faster HMR.
 
 ### Model & Framework Enhancements
 - **Next-Gen Models**: Integrated benchmarks and system prompts for **Gemini 3.0 Pro**, **Gemini 3 Deep Think**, **GPT-5**, **Claude 4.5 Opus**, and **DeepSeek R1**.
-- **New Frameworks**: Added **RACEF** (Rephrase, Append, Contextualize, Examples, Follow-Up), **SPEAR**, and **QUEST**.
+- **New Frameworks**: Added **RACEF**, **SPEAR**, and **QUEST**.
 - **Reasoning Capabilities**: Added specific support for recursive reasoning chains and "Deep Think" meta-prompts.
 - **Optimization Algorithms**: Added Chain-of-Density (CoD) and Automated Prompt Optimization (APO) techniques.
 
