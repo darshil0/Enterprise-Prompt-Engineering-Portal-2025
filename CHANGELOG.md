@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [2.0.2] - 2025-12-25
+## [2.0.2] - 2026-06-03
 
 ### Added
 - Implemented missing sections in the Enterprise Manual:
