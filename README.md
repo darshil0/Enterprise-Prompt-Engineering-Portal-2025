@@ -12,14 +12,14 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 ### ✨ Key Features
 
-- 🧩 **2025 Frameworks**: RISEN, COSTAR, RACEF, SPEAR, QUEST, and RODES for next-gen prompting
-- ⚡ **Super-Input Logic**: Pre-built prompt templates for QA, development, and strategic planning
-- ⚙️ **System Architecture**: Foundational system prompts for Claude 4.5, GPT-5, and Gemini 3 / Deep Think models
-- 📊 **Signal Performance**: Real-time model benchmarking with interactive charts
-- 💎 **Google AI Ecosystem**: Integration with Gemini API for prompt refinement
-- 📚 **Knowledge Base**: Curated resources from OpenAI, Anthropic, Google, DeepSeek, and Meta
-- ✨ **Studio Optimization**: Expert-level configuration guidance for LLM parameters
-- 📈 **Verification Loops**: Advanced optimization techniques (CoT, CoVe, Few-Shot, Self-Critique)
+- **🧩 Prompt Frameworks (2025 Edition)**: RISEN, COSTAR, RACEF, SPEAR, QUEST, and RODES—use these structured approaches to improve prompt quality by 30-40%
+- **⚡ AI-Powered Refinement**: Input raw prompts → get professionally optimized versions instantly using Gemini 1.5 Pro with automatic framework application
+- **⚙️ System Prompts Library**: Pre-tested system prompts for Claude 4.5 Opus, GPT-5, Gemini 3 Pro, and DeepSeek R1 with configuration guidance
+- **📊 Model Benchmarking**: Real-time, interactive visualization of GPQA, SWE-bench, AIME, and context window metrics across top LLMs
+- **🔒 Security & Compliance**: Deep-dive into prompt injection defense, PII protection, and enterprise guardrails
+- **📚 Comprehensive Knowledge Base**: Curated resources and best practices from OpenAI, Anthropic, Google, DeepSeek, and Meta
+- **🛠️ Advanced Optimization**: Chain-of-Thought (CoT), Chain-of-Verification (CoVe), Few-Shot examples, Self-Critique, and Automated Prompt Optimization (APO) techniques
+- **📈 Observability Integration**: Setup guides for LangSmith, Promptfoo, and Arize Phoenix
 
 ---
 
@@ -53,8 +53,10 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
    
    Edit `.env` and add your Gemini API key:
    ```env
-   VITE_GEMINI_API_KEY=your_actual_api_key_here
+   VITE_GEMINI_API_KEY=your_actual_gemini_api_key_here
    ```
+   
+   ⚠️ **Security**: Never commit `.env` to version control. It's already listed in `.gitignore`.
 
 4. **Run the development server**
    ```bash
@@ -63,7 +65,7 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 5. **Open your browser**
    
-   Navigate to `http://localhost:3000`
+   Navigate to `http://localhost:3000` (or the port shown in terminal)
 
 ---
 
@@ -72,43 +74,46 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 ```
 enterprise-prompt-portal/
 ├── src/
-│   ├── components/             # UI Components
-│   │   ├── Layout.tsx          # Main layout with sidebar navigation
-│   │   ├── ErrorBoundary.tsx   # Error boundary for React errors
-│   │   ├── BenchmarkChart.tsx  # Interactive benchmark visualization
-│   │   └── Manual.tsx          # Comprehensive AI resources guide
-│   ├── services/               # API Services
-│   │   └── geminiService.ts    # Gemini API integration
-│   ├── constants.ts            # Data constants and configurations
-│   ├── types.ts                # TypeScript type definitions
-│   ├── App.tsx                 # Main application component
-│   ├── index.tsx               # Application entry point
-│   └── vite-env.d.ts           # Vite type definitions
-├── index.html                  # HTML entry point
-├── index.css                   # Global styles
-├── vite.config.ts              # Vite configuration
-├── tsconfig.json               # TypeScript configuration
-├── tailwind.config.js          # Tailwind CSS configuration
-├── postcss.config.js           # PostCSS configuration
-├── package.json                # Dependencies and scripts
-├── .env.example                # Environment variables template
-└── README.md                   # This file
+│   ├── components/               # Reusable React components
+│   │   ├── Layout.tsx            # Main layout with sidebar navigation
+│   │   ├── ErrorBoundary.tsx     # Error boundary for graceful error handling
+│   │   ├── BenchmarkChart.tsx    # Interactive recharts visualization
+│   │   └── Manual.tsx            # Comprehensive AI resources & best practices guide
+│   ├── services/                 # External API integrations
+│   │   └── geminiService.ts      # Gemini API wrapper with error handling
+│   ├── constants.ts              # Framework definitions, prompts, benchmarks
+│   ├── types.ts                  # TypeScript interfaces & types
+│   ├── App.tsx                   # Main application component & routing
+│   ├── index.tsx                 # React DOM render entry point
+│   └── vite-env.d.ts             # Vite environment type definitions
+├── public/                       # Static assets (if any)
+├── index.html                    # HTML entry point
+├── index.css                     # Global styles & Tailwind imports
+├── vite.config.ts                # Vite build configuration
+├── tsconfig.json                 # TypeScript compiler options
+├── tailwind.config.js            # Tailwind CSS customization
+├── postcss.config.js             # PostCSS config for Tailwind
+├── .eslintrc.config.js           # ESLint flat config
+├── package.json                  # Dependencies & npm scripts
+├── .env.example                  # Environment template (safe to commit)
+├── .gitignore                    # Git ignore rules (includes .env)
+└── README.md                     # This file
 ```
 
 ---
 
 ## 🔧 Available Scripts
 
-### Development
+### Development & Build
 ```bash
-npm run dev          # Start development server
-npm run build        # Build for production
-npm run preview      # Preview production build
+npm run dev          # Start Vite dev server with HMR
+npm run build        # Production build (output to dist/)
+npm run preview      # Preview production build locally
 ```
 
 ### Code Quality
 ```bash
-npm run type-check   # Run TypeScript type checking
+npm run type-check   # TypeScript type checking
 npm run lint         # Run ESLint
 npm run format       # Format code with Prettier
 ```
@@ -119,122 +124,113 @@ npm run format       # Format code with Prettier
 
 ### 1. Prompt Frameworks
 
-Learn and apply industry-standard prompting frameworks:
+Six industry-standard frameworks to structure your prompts for clarity and consistency:
 
-- **RACEF**: Rephrase, Append, Contextualize, Examples, Follow-Up
-- **SPEAR**: Start, Provide, Explain, Ask, Rinse & Repeat
-- **QUEST**: Question, Understanding, Expectation, Scope, Time
-- **RISEN**: Role, Instructions, Steps, End Goal, Narrowing
-- **COSTAR**: Context, Objective, Style, Tone, Audience, Response
-- **RODES**: Role, Objective, Details, Examples, Sense Check
+| Framework | Use Case | Example |
+|-----------|----------|---------|
+| **RISEN** | General-purpose prompting | Define Role, Instructions, Steps, End Goal, then Narrow scope |
+| **COSTAR** | Content creation & analysis | Context → Objective → Style → Tone → Audience → Response format |
+| **RACEF** | Iterative refinement | Rephrase → Append context → Contextualize → Examples → Follow-up |
+| **SPEAR** | Dialogue & interactive tasks | Start topic → Provide info → Explain reasoning → Ask questions → Repeat |
+| **QUEST** | Requirement gathering | Question → Understanding → Expectation → Scope → Time constraints |
+| **RODES** | Verification-heavy tasks | Role → Objective → Details → Examples → Sense check |
+
+**Recommendation**: Use COSTAR for content work, RISEN for technical tasks, QUEST for requirements.
 
 ### 2. AI-Powered Prompt Refinement
 
-- Input draft prompts
-- Get professionally refined outputs
-- Powered by Gemini 1.5 Pro
-- Applies COSTAR/RISEN frameworks automatically
-- Real-time processing with error handling
+1. Input your draft prompt
+2. Optionally select a framework (COSTAR/RISEN applied by default)
+3. Gemini 1.5 Pro refines it in real-time
+4. Get professional output with reasoning transparency
+5. Copy, iterate, or deploy
+
+**Error Handling**: If API fails, you'll see a clear error message with retry options. Check your API key in `.env`.
 
 ### 3. System Prompts Library
-    
-    Pre-configured system prompts for:
-    - Google Gemini 3 Pro / Deep Think
-    - Anthropic Claude 4.5 Opus
-    - OpenAI GPT-5 / o3
+
+Pre-configured, production-tested system prompts optimized for:
+- **Google Gemini 3 Pro**: High-reasoning, complex multi-step tasks
+- **Google Gemini 3 Deep Think**: Extended chain-of-thought for math, code, reasoning
+- **Anthropic Claude 4.5 Opus**: Balanced reasoning and accuracy, best for enterprise
+- **OpenAI GPT-5**: Faster inference, good for high-volume applications
+- **DeepSeek R1**: Cost-effective reasoning alternative
+
+Each includes parameter recommendations (temperature, top_p, max_tokens).
 
 ### 4. Interactive Benchmarks
 
-Real-time visualization of:
-- **GPQA scores**: Graduate-level reasoning
-- **SWE-bench scores**: Software engineering tasks
-- **AIME scores**: Mathematical problem-solving
-- **Context window**: Input capacity comparisons
+Compare LLM performance across critical metrics:
+- **GPQA**: Graduate-level reasoning (hard science/math questions)
+- **SWE-bench**: Real-world software engineering tasks (code generation, debugging)
+- **AIME**: American Invitational Mathematics Exam (olympiad-level math)
+- **Context Window**: Maximum tokens supported (important for long documents/conversations)
 
-### 5. Resource Hub
+Charts update with model selection. Data is sourced from official model cards (Jan 2025).
 
-Curated links to:
-- Official documentation (OpenAI, Anthropic, Google)
-- Cookbooks and tutorials
-- Community resources
-- Academic papers
+### 5. Security & Compliance
+
+Deep-dives into:
+- **Prompt Injection Defense**: Detecting and mitigating adversarial inputs
+- **PII Protection**: Anonymization strategies and detection patterns
+- **Enterprise Guardrails**: Rate limiting, content filtering, audit logging
+- **Compliance Frameworks**: HIPAA, SOC2, ISO 27001 considerations for LLM deployment
+
+### 6. Resource Hub
+
+Curated, vetted links to:
+- **Official Docs**: OpenAI, Anthropic, Google, DeepSeek, Meta documentation
+- **Cookbooks & Tutorials**: Prompt engineering best practices
+- **Community Resources**: GitHub repos, blogs, papers
+- **Tools**: LangSmith, Promptfoo, Arize Phoenix for observability
 
 ---
 
 ## 🔐 Environment Variables
 
-| Variable | Description | Required |
-|----------|-------------|----------|
-| `VITE_GEMINI_API_KEY` | Your Gemini API key from Google AI Studio | Yes |
-| `VITE_API_KEY` | Alternative API key variable name | No |
+| Variable | Description | Required | Example |
+|----------|-------------|----------|---------|
+| `VITE_GEMINI_API_KEY` | Your Gemini API key from Google AI Studio | ✅ Yes | `AIza...` |
 
-Get your API key: https://aistudio.google.com/app/apikey
+**How to get your API key:**
+1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
+2. Click "Create API Key"
+3. Copy and paste into `.env`
 
----
-
-## 🚀 Version 2.0.2 - 2025 Comprehensive Update
-
-### Full Enterprise Manual Implementation
-- **Completed Manual**: Implemented all missing sections in the Enterprise Resources Guide, providing a 360-degree view of AI operations.
-- **Security & Compliance**: Added deep-dives into Prompt Injection defense and PII protection strategies.
-- **QA & Observability**: Integrated best practices for Promptfoo, LangSmith, and Arize Phoenix.
-
-### Tech Stack Modernization
-- **Dependency Refresh**: Updated core and dev dependencies.
-- **TypeScript & ESLint**: Resolved all deprecation warnings and migrated to ESLint flat configuration for future-proof linting.
-- **Build Optimization**: Refined Vite and Rollup configurations for optimized chunking and faster HMR.
-
-### Model & Framework Enhancements
-- **Next-Gen Models**: Integrated benchmarks and system prompts for **Gemini 3.0 Pro**, **Gemini 3 Deep Think**, **GPT-5**, **Claude 4.5 Opus**, and **DeepSeek R1**.
-- **New Frameworks**: Added **RACEF**, **SPEAR**, and **QUEST**.
-- **Reasoning Capabilities**: Added specific support for recursive reasoning chains and "Deep Think" meta-prompts.
-- **Optimization Algorithms**: Added Chain-of-Density (CoD) and Automated Prompt Optimization (APO) techniques.
-
----
-
-## 🐛 Version 2.0.1 - What's Fixed
-
-### Critical Fixes
-
-✅ **Architecture & Structure**
-- Streamlined folder structure: Moved source code to standard `src/` directory
-- Updated `index.html` entry point to `/src/index.tsx`
-- Configured path aliases (`@/`) to point to `src/`
-
-✅ **Configuration & Build**
-- Corrected `tsconfig.json` to look for files in `src` directory
-- Fixed `vite.config.ts` path resolution for ESM compatibility (replaced `__dirname`)
-- Added `vite-env.d.ts` for proper `import.meta.env` typing
-
-✅ **Logic & Runtime**
-- Fixed variable naming bug (`idx` vs `index`) in `App.tsx` preventing component rendering
-- Switched from backend-only `@google/genai` to proper frontend SDK `@google/generative-ai`
-- Cleaned up import paths in `App.tsx` (removed `.tsx` extensions)
-
-✅ **Environment**
-- Added `.env.example` guidance
-- Unified environment variable handling for Vite (`import.meta.env`)
+**Troubleshooting:**
+- If you see "API key invalid" → Check `.env` file exists and key is copied correctly
+- If you see "Quota exceeded" → Your API has rate limits; contact Google Cloud support
+- Key won't work in production? → You'll need a Google Cloud project with billing enabled
 
 ---
 
 ## 📦 Dependencies
 
-### Core
-- **react** ^19.2.3 - UI library
-- **react-dom** ^19.2.3 - React DOM renderer
-- **@google/generative-ai** ^0.21.0 - Google Generative AI SDK (Web)
-- **recharts** ^3.6.0 - Chart library
-- **lucide-react** ^0.474.0 - Icon library
+### Core (Production)
+```json
+{
+  "react": "^19.2.3",              // UI framework
+  "react-dom": "^19.2.3",          // DOM rendering
+  "@google/generative-ai": "^0.21.0", // Gemini API (web SDK)
+  "recharts": "^3.6.0",            // Charts for benchmarks
+  "lucide-react": "^0.474.0"       // Icons
+}
+```
 
 ### Dev
-- **@vitejs/plugin-react** ^5.0.0 - Vite React plugin
-- **typescript** ~5.8.2 - TypeScript compiler
-- **vite** ^6.2.0 - Build tool
-- **tailwindcss** ^3.4.1 - CSS framework
+```json
+{
+  "@vitejs/plugin-react": "^5.0.0", // Vite React integration
+  "typescript": "~5.8.2",            // Type checking
+  "vite": "^6.2.0",                  // Build tool & dev server
+  "tailwindcss": "^3.4.1",           // CSS framework
+  "eslint": "^9.x.x"                 // Linting
+}
+```
 
 ---
 
-## 🚢 Deployment
+## 🚀 Deployment
 
 ### Build for Production
 
@@ -242,57 +238,116 @@ Get your API key: https://aistudio.google.com/app/apikey
 npm run build
 ```
 
-The build output will be in the `dist/` directory.
+Output: `dist/` directory ready for deployment.
 
 ### Deploy to Vercel
 
 ```bash
+# Install Vercel CLI (one-time)
 npm install -g vercel
+
+# Deploy
 vercel
 ```
+
+Vercel will auto-detect Vite and handle environment variables via dashboard.
 
 ### Deploy to Netlify
 
 ```bash
+# Install Netlify CLI (one-time)
 npm install -g netlify-cli
+
+# Deploy
 netlify deploy --prod
 ```
+
+**Important**: Set `VITE_GEMINI_API_KEY` in the platform's environment variable settings (never in code).
+
+### Deploy to Self-Hosted (Docker)
+
+```dockerfile
+FROM node:18-alpine
+WORKDIR /app
+COPY package*.json .
+RUN npm ci
+COPY . .
+RUN npm run build
+EXPOSE 3000
+CMD ["npm", "run", "preview"]
+```
+
+---
+
+## 🐛 Version History
+
+### v2.0.2 (Current)
+
+**Enterprise Manual Implementation**
+- ✅ All missing sections completed: Security, Compliance, Observability, Advanced Optimization
+- ✅ Added 360-degree view of prompt engineering operations
+- ✅ Prompt Injection defense strategies documented
+- ✅ PII protection patterns with examples
+
+**Tech Stack Modernization**
+- ✅ TypeScript 5.8.2 with strict mode
+- ✅ ESLint migrated to flat config (future-proof)
+- ✅ Vite 6.2 with optimized chunking
+- ✅ All deprecation warnings resolved
+
+**Model & Framework Enhancements**
+- ✅ Added Gemini 3 Deep Think benchmarks
+- ✅ New frameworks: RACEF, SPEAR, QUEST
+- ✅ System prompts for GPT-5 and DeepSeek R1
+- ✅ Chain-of-Density (CoD) and APO techniques documented
+
+### v2.0.1 (Previous)
+
+**Critical Fixes**
+- ✅ Moved source code to standard `src/` directory
+- ✅ Fixed `vite.config.ts` ESM compatibility
+- ✅ Corrected variable naming bug (`idx` → `index`) in App.tsx
+- ✅ Switched from backend SDK to frontend `@google/generative-ai`
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please follow these steps:
+Contributions welcome! Process:
 
 1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+2. Create feature branch: `git checkout -b feature/YourFeature`
+3. Commit: `git commit -m 'Add YourFeature'`
+4. Push: `git push origin feature/YourFeature`
+5. Open Pull Request with description
+
+**Guidelines**: Keep PRs focused, include tests if applicable, follow TypeScript/ESLint rules.
 
 ---
 
 ## 📝 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+MIT License – see [LICENSE](LICENSE) for details. Use freely in commercial and personal projects.
 
 ---
 
 ## 🙏 Acknowledgments
 
 - Google DeepMind for Gemini API
-- OpenAI for GPT models
-- Anthropic for Claude models
-- The open-source community
+- OpenAI for GPT models and best practices
+- Anthropic for Claude and prompt engineering guidance
+- Open-source community (Vite, React, Tailwind teams)
 
 ---
 
-## 📞 Support
+## 📞 Support & Issues
 
-For support:
-- Open an issue on [GitHub](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025/issues)
-- Check the [documentation](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
+- **GitHub Issues**: [Report bugs or request features](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025/issues)
+- **Documentation**: Full docs at [/docs](./docs) (if available)
+- **API Issues**: Check [Google AI Studio status](https://status.cloud.google.com/)
 
 ---
 
 **Built with ❤️ by Darshil Shah**
+
+*Last Updated: June 2026*
