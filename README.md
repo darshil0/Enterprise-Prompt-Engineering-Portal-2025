@@ -5,10 +5,10 @@
 [![Node.js](https://img.shields.io/badge/Node.js-18+-339933.svg)](https://nodejs.org/)
 [![npm](https://img.shields.io/badge/npm-10+-CB3837.svg)](https://www.npmjs.com/)
 [![React](https://img.shields.io/badge/React-19.2.3-61dafb.svg)](https://reactjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.2-3178c6.svg)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-6.2.0-646CFF.svg)](https://vitejs.dev/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.1-06B6D4.svg)](https://tailwindcss.com/)
-[![Gemini](https://img.shields.io/badge/Gemini-1.5%20Pro-orange.svg)](https://ai.google.dev/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.8.0-3178c6.svg)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-6.3.0-646CFF.svg)](https://vitejs.dev/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.0-06B6D4.svg)](https://tailwindcss.com/)
+[![Gemini](https://img.shields.io/badge/Gemini-2.0%20Flash-orange.svg)](https://ai.google.dev/)
 [![ESLint](https://img.shields.io/badge/ESLint-9.x-4B32C3.svg)](https://eslint.org/)
 [![Contributions](https://img.shields.io/badge/contributions-welcome-brightgreen.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025/blob/main/CONTRIBUTING.md)
 [![Status](https://img.shields.io/badge/status-active-success.svg)](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025)
@@ -19,9 +19,9 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 ### ✨ Key Features
 
-- **🧩 Prompt Frameworks (2025 Edition)**: RISEN, COSTAR, RACEF, SPEAR, QUEST, and RODES—use these structured approaches to improve prompt quality by 30-40%
-- **⚡ AI-Powered Refinement**: Input raw prompts → get professionally optimized versions instantly using Gemini 1.5 Pro with automatic framework application
-- **⚙️ System Prompts Library**: Pre-tested system prompts for Claude 4.5 Opus, GPT-5, Gemini 3 Pro, and DeepSeek R1 with configuration guidance
+- **🧩 Prompt Frameworks (2026 Edition)**: RISEN, COSTAR, RACEF, SPEAR, QUEST, APE, and RODES—use these structured approaches to improve prompt quality by 30-40%
+- **⚡ AI-Powered Refinement**: Input raw prompts → get professionally optimized versions instantly using Gemini 2.0 Flash with automatic framework application
+- **⚙️ System Prompts Library**: Pre-tested system prompts for Claude 4.5 Opus, GPT-5, Gemini 3 Pro/Flash, and DeepSeek R1 with configuration guidance
 - **📊 Model Benchmarking**: Real-time, interactive visualization of GPQA, SWE-bench, AIME, and context window metrics across top LLMs
 - **🔒 Security & Compliance**: Deep-dive into prompt injection defense, PII protection, and enterprise guardrails
 - **📚 Comprehensive Knowledge Base**: Curated resources and best practices from OpenAI, Anthropic, Google, DeepSeek, and Meta
@@ -88,7 +88,11 @@ enterprise-prompt-portal/
 │   │   └── Manual.tsx            # Comprehensive AI resources & best practices guide
 │   ├── services/                 # External API integrations
 │   │   └── geminiService.ts      # Gemini API wrapper with error handling
-│   ├── constants.ts              # Framework definitions, prompts, benchmarks
+│   ├── constants/                # Specialized constant modules
+│   │   ├── benchmarks.ts         # Performance metrics for models
+│   │   ├── frameworks.ts         # Prompt engineering frameworks
+│   │   ├── prompts.ts            # System and super prompts
+│   │   └── index.ts              # Constants entry point
 │   ├── types.ts                  # TypeScript interfaces & types
 │   ├── App.tsx                   # Main application component & routing
 │   ├── index.tsx                 # React DOM render entry point
@@ -148,7 +152,7 @@ Six industry-standard frameworks to structure your prompts for clarity and consi
 
 1. Input your draft prompt
 2. Optionally select a framework (COSTAR/RISEN applied by default)
-3. Gemini 1.5 Pro refines it in real-time
+3. Gemini 2.0 Flash refines it in real-time
 4. Get professional output with reasoning transparency
 5. Copy, iterate, or deploy
 
@@ -218,8 +222,8 @@ Curated, vetted links to:
 {
   "react": "^19.2.3",              // UI framework
   "react-dom": "^19.2.3",          // DOM rendering
-  "@google/generative-ai": "^0.21.0", // Gemini API (web SDK)
-  "recharts": "^3.6.0",            // Charts for benchmarks
+  "@google/generative-ai": "^0.24.1", // Gemini API (web SDK)
+  "recharts": "^2.10.0",           // Charts for benchmarks
   "lucide-react": "^0.474.0"       // Icons
 }
 ```
@@ -227,11 +231,11 @@ Curated, vetted links to:
 ### Dev
 ```json
 {
-  "@vitejs/plugin-react": "^5.0.0", // Vite React integration
-  "typescript": "~5.8.2",            // Type checking
-  "vite": "^6.2.0",                  // Build tool & dev server
-  "tailwindcss": "^3.4.1",           // CSS framework
-  "eslint": "^9.x.x"                 // Linting
+  "@vitejs/plugin-react-swc": "^3.11.0", // Vite React SWC integration
+  "typescript": "^5.8.0",            // Type checking
+  "vite": "^6.3.0",                  // Build tool & dev server
+  "tailwindcss": "^3.4.0",           // CSS framework
+  "eslint": "^9.20.0"                // Linting
 }
 ```
 
@@ -357,4 +361,4 @@ MIT License – see [LICENSE](LICENSE) for details. Use freely in commercial and
 
 **Built with ❤️ by Darshil Shah**
 
-*Last Updated: January 2026*
+*Last Updated: June 2026*
