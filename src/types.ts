@@ -8,7 +8,7 @@ export interface Resource {
   category: ResourceCategory;
 }
 
-export interface Framework {
+export interface PromptFramework {
   name: string;
   components: string;
   bestFor: string;
@@ -17,6 +17,7 @@ export interface Framework {
 export interface SuperPrompt {
   id: string;
   title: string;
+  category: string;
   content: string;
 }
 
@@ -35,8 +36,11 @@ export interface GoogleProduct {
   prompt: string;
 }
 
-export interface Benchmark {
+export interface ModelBenchmark {
   model: string;
+  gpqa: string;
+  sweBench: string;
+  aime: string;
   context: string;
 }
 

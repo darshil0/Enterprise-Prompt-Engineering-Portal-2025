@@ -1,7 +1,7 @@
 import path from 'path';
 import url from 'url';
 import { defineConfig, loadEnv } from 'vite';
-import react from '@vitejs/plugin-react';
+import react from '@vitejs/plugin-react-swc';
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -15,6 +15,12 @@ export default defineConfig(({ mode }) => {
       host: '0.0.0.0', // Allows network access
       open: true, // Auto-open browser on start
       strictPort: false, // Try next port if 3000 is busy
+      proxy: {
+        '/api': {
+          target: 'http://localhost:3001',
+          changeOrigin: true,
+        },
+      },
     },
 
     // Preview server (for production build testing)
@@ -82,6 +88,14 @@ export default defineConfig(({ mode }) => {
     // CSS configuration
     css: {
       devSourcemap: true, // CSS sourcemaps in dev
+    },
+
+    // Testing configuration
+    test: {
+      globals: true,
+      environment: 'jsdom',
+      setupFiles: './src/test/setup.ts',
+      css: true,
     },
   };
 });

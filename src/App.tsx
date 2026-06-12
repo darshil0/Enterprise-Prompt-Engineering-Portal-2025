@@ -11,19 +11,24 @@ import {
   GOOGLE_PRODUCTS,
   BENCHMARKS,
   OPTIMIZATION_TECHNIQUES
-} from './constants';
+} from './constants/index';
 import { geminiService } from './services/geminiService';
 import { Resource, ResourceCategory } from './types';
+import { useHistory } from './hooks/useHistory';
+import { exportToMarkdown, downloadFile } from './utils/exportUtils';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('intro');
   const [resources, setResources] = useState<Resource[]>(INITIAL_RESOURCES);
   const [isRepairing, setIsRepairing] = useState(false);
   const [refinementInput, setRefinementInput] = useState('');
+  const [debouncedInput, setDebouncedInput] = useState('');
   const [refinementResult, setRefinementResult] = useState('');
+  const [refinementError, setRefinementError] = useState<string | null>(null);
   const [isRefining, setIsRefining] = useState(false);
   const [resourceFilter, setResourceFilter] = useState<'All' | ResourceCategory>('All');
   const [toast, setToast] = useState<string | null>(null);
+  const { history, addToHistory, clearHistory } = useHistory();
 
   useEffect(() => {
     if (toast) {
@@ -31,6 +36,14 @@ const App: React.FC = () => {
       return () => clearTimeout(timer);
     }
   }, [toast]);
+
+  useEffect(() => {
+    const handler = setTimeout(() => {
+      setDebouncedInput(refinementInput);
+    }, 500);
+
+    return () => clearTimeout(handler);
+  }, [refinementInput]);
 
   const filteredResources = useMemo(() => {
     if (resourceFilter === 'All') return resources;
@@ -60,12 +73,14 @@ const App: React.FC = () => {
     if (!refinementInput.trim()) return;
     setIsRefining(true);
     setRefinementResult('');
+    setRefinementError(null);
     try {
       const result = await geminiService.refinePrompt(refinementInput);
       setRefinementResult(result);
-    } catch (error) {
+      addToHistory(refinementInput, result);
+    } catch (error: any) {
       console.error('Refinement error:', error);
-      setRefinementResult("Error connecting to Neural Engine.");
+      setRefinementError(error.message || "Error connecting to Neural Engine.");
     } finally {
       setIsRefining(false);
     }
@@ -319,25 +334,59 @@ const App: React.FC = () => {
                     />
                     <button
                       onClick={handleRefinePrompt}
-                      disabled={isRefining}
-                      className="w-full py-6 bg-brand-600 hover:bg-brand-500 disabled:bg-zinc-800 text-white font-black text-xs uppercase tracking-[0.4em] rounded-[1.5rem] transition-all shadow-2xl active:scale-95"
+                      disabled={isRefining || !debouncedInput.trim()}
+                      className="w-full py-6 bg-brand-600 hover:bg-brand-500 disabled:bg-zinc-800 text-white font-black text-xs uppercase tracking-[0.4em] rounded-[1.5rem] transition-all shadow-2xl active:scale-95 disabled:opacity-50"
                     >
                       {isRefining ? 'Processing Signals...' : 'Execute Reconstruction'}
                     </button>
                   </div>
                 </div>
                 <div className="flex-1 bg-zinc-900/60 backdrop-blur-md rounded-[3rem] border border-zinc-800/50 p-10 flex flex-col min-h-[500px]">
-                  {refinementResult ? (
+                  {isRefining ? (
+                    <div className="space-y-6 animate-pulse">
+                      <div className="h-4 bg-zinc-800 rounded w-3/4"></div>
+                      <div className="h-4 bg-zinc-800 rounded w-full"></div>
+                      <div className="h-4 bg-zinc-800 rounded w-5/6"></div>
+                      <div className="h-4 bg-zinc-800 rounded w-1/2"></div>
+                      <div className="h-4 bg-zinc-800 rounded w-4/5"></div>
+                      <div className="h-4 bg-zinc-800 rounded w-full"></div>
+                    </div>
+                  ) : refinementError ? (
+                    <div className="h-full flex flex-col items-center justify-center text-rose-500 gap-6 text-center">
+                      <div className="size-16 bg-rose-500/10 rounded-full flex items-center justify-center text-2xl">⚠️</div>
+                      <div>
+                        <p className="font-bold uppercase tracking-widest text-[10px] mb-2">Refinement Failed</p>
+                        <p className="text-sm font-medium text-zinc-400">{refinementError}</p>
+                      </div>
+                      <button
+                        onClick={handleRefinePrompt}
+                        className="px-8 py-3 bg-zinc-800 hover:bg-zinc-700 text-white rounded-xl text-[10px] font-black uppercase tracking-widest transition-all"
+                      >
+                        Retry Reconstruction
+                      </button>
+                    </div>
+                  ) : refinementResult ? (
                     <div className="h-full flex flex-col">
                       <div className="flex-1 font-mono text-sm text-brand-100 leading-relaxed overflow-y-auto whitespace-pre-wrap pr-4 custom-scrollbar">
                         {refinementResult}
                       </div>
-                      <button
-                        onClick={() => handleCopy(refinementResult)}
-                        className="mt-10 w-full py-4 bg-white/5 border border-zinc-800 hover:border-brand-500 text-zinc-400 hover:text-brand-300 text-[10px] font-black rounded-xl uppercase tracking-widest transition-all"
-                      >
-                        Clone to Clipboard
-                      </button>
+                      <div className="mt-10 flex gap-4">
+                        <button
+                          onClick={() => handleCopy(refinementResult)}
+                          className="flex-1 py-4 bg-white/5 border border-zinc-800 hover:border-brand-500 text-zinc-400 hover:text-brand-300 text-[10px] font-black rounded-xl uppercase tracking-widest transition-all"
+                        >
+                          Clone
+                        </button>
+                        <button
+                          onClick={() => {
+                            const md = exportToMarkdown("Refined Prompt", refinementInput, refinementResult);
+                            downloadFile(md, "refined-prompt.md", "text/markdown");
+                          }}
+                          className="flex-1 py-4 bg-zinc-800 hover:bg-zinc-700 text-brand-300 text-[10px] font-black rounded-xl uppercase tracking-widest transition-all"
+                        >
+                          Export MD
+                        </button>
+                      </div>
                     </div>
                   ) : (
                     <div className="h-full flex flex-col items-center justify-center text-zinc-700 font-mono text-sm italic gap-4">
@@ -347,6 +396,59 @@ const App: React.FC = () => {
                 </div>
               </div>
             </div>
+
+            {history.length > 0 && (
+              <div className="space-y-12">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-3xl font-black text-white tracking-tighter">
+                    Recent <span className="text-gradient">Refinements</span>
+                  </h3>
+                  <button
+                    onClick={clearHistory}
+                    className="text-[10px] font-black text-zinc-500 uppercase tracking-widest hover:text-rose-500 transition-colors"
+                  >
+                    Clear History
+                  </button>
+                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                  {history.map((item) => (
+                    <div key={item.id} className="p-8 bg-zinc-900/40 border border-zinc-800 rounded-[2.5rem] group hover:border-brand-500/50 transition-all">
+                      <div className="flex items-center justify-between mb-6">
+                        <span className="text-[10px] font-black text-zinc-600 uppercase tracking-widest">
+                          {new Date(item.timestamp).toLocaleString()}
+                        </span>
+                        <div className="flex gap-2">
+                          <button
+                            onClick={() => {
+                              const md = exportToMarkdown("Refined Prompt", item.original, item.refined);
+                              downloadFile(md, `refined-prompt-${item.id.slice(0, 4)}.md`, "text/markdown");
+                            }}
+                            className="size-8 bg-zinc-800 rounded-lg flex items-center justify-center text-xs text-zinc-400 hover:bg-brand-500 hover:text-white transition-all"
+                            title="Export Markdown"
+                          >
+                            ↓
+                          </button>
+                          <button
+                            onClick={() => handleCopy(item.refined)}
+                            className="size-8 bg-zinc-800 rounded-lg flex items-center justify-center text-xs text-zinc-400 hover:bg-brand-600 hover:text-white transition-all"
+                            title="Copy to Clipboard"
+                          >
+                            ⎘
+                          </button>
+                        </div>
+                      </div>
+                      <div className="space-y-4">
+                        <div className="text-[10px] font-bold text-zinc-500 uppercase tracking-widest">Original</div>
+                        <p className="text-xs text-zinc-400 font-mono line-clamp-2 italic">"{item.original}"</p>
+                        <div className="text-[10px] font-bold text-brand-500 uppercase tracking-widest">Refined</div>
+                        <p className="text-sm text-brand-100 font-mono line-clamp-3 leading-relaxed">{item.refined}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
               {SUPER_PROMPTS.map(superPrompt => (
                 <div
