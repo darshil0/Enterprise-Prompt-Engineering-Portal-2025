@@ -100,8 +100,8 @@ export const Manual: React.FC = () => {
           </div>
           <div className="text-right shrink-0">
             <span className="text-xs font-black text-zinc-400 uppercase tracking-widest block">Guide Version</span>
-            <span className="text-2xl font-black text-brand-600">2.0</span>
-            <div className="text-xs font-bold text-zinc-500 mt-1">Updated: Dec 2025</div>
+            <span className="text-2xl font-black text-brand-600">2.0.2</span>
+            <div className="text-xs font-bold text-zinc-500 mt-1">Updated: June 2026</div>
           </div>
         </div>
       </div>
@@ -232,64 +232,119 @@ export const Manual: React.FC = () => {
           {activeTab === 'prompting' && (
             <div className="space-y-20 fade-in-up">
               <div className="border-b border-zinc-100 pb-12">
-                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">3. Prompt Engineering</h3>
+                <h3 className="text-4xl font-black text-zinc-900 tracking-tight mb-6">3. Prompt Engineering Frameworks</h3>
                 <p className="text-xl text-zinc-500 font-medium max-w-3xl leading-relaxed">
-                  Advanced frameworks for structuring machine-readable intent.
+                  Advanced frameworks for structuring machine-readable intent and ensuring deterministic outputs.
                 </p>
               </div>
               <div className="grid grid-cols-1 xl:grid-cols-2 gap-8">
-                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6">
-                  <h4 className="text-2xl font-black text-zinc-900">COSTAR Framework</h4>
-                  <ul className="space-y-4">
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">C</span>
-                      <span className="text-zinc-600">Context: Background information</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">O</span>
-                      <span className="text-zinc-600">Objective: The specific task</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">S</span>
-                      <span className="text-zinc-600">Style: Writing style or persona</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">T</span>
-                      <span className="text-zinc-600">Tone: Emotional resonance</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">A</span>
-                      <span className="text-zinc-600">Audience: Who is it for?</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">R</span>
-                      <span className="text-zinc-600">Response: Format requirements</span>
-                    </li>
+                {/* COSTAR */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">COSTAR</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: Executive Reports & Post-Mortems</p>
+                  <ul className="space-y-3">
+                    {['Context', 'Objective', 'Style', 'Tone', 'Audience', 'Response'].map(item => (
+                      <li key={item} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item[0]}</span>
+                        <span className="text-zinc-600 text-sm">{item}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
-                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6">
-                  <h4 className="text-2xl font-black text-zinc-900">RISEN Framework</h4>
-                  <ul className="space-y-4">
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">R</span>
-                      <span className="text-zinc-600">Role: Assign a specific persona</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">I</span>
-                      <span className="text-zinc-600">Instructions: Clear, step-by-step commands</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">S</span>
-                      <span className="text-zinc-600">Steps: Specific workflow to follow</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">E</span>
-                      <span className="text-zinc-600">End Goal: The desired final state</span>
-                    </li>
-                    <li className="flex gap-4">
-                      <span className="font-black text-brand-600">N</span>
-                      <span className="text-zinc-600">Narrowing: Constraints and negative prompts</span>
-                    </li>
+                {/* RISEN */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">RISEN</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: High-level Test Strategies & Architecture</p>
+                  <ul className="space-y-3">
+                    {['Role', 'Instructions', 'Steps', 'End Goal', 'Narrowing'].map(item => (
+                      <li key={item} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item[0]}</span>
+                        <span className="text-zinc-600 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* RACEF */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">RACEF</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: Iterative Refinement & Precision outputs</p>
+                  <ul className="space-y-3">
+                    {[
+                      { l: 'R', v: 'Rephrase: Clarify the intent' },
+                      { l: 'A', v: 'Append: Add missing details' },
+                      { l: 'C', v: 'Contextualize: Provide background' },
+                      { l: 'E', v: 'Examples: Give 1-shot/few-shot samples' },
+                      { l: 'F', v: 'Follow-Up: Iterative check' }
+                    ].map(item => (
+                      <li key={item.l} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item.l}</span>
+                        <span className="text-zinc-600 text-sm">{item.v}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* SPEAR */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">SPEAR</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: Clear, Step-by-Step interactive sessions</p>
+                  <ul className="space-y-3">
+                    {[
+                      { l: 'S', v: 'Start: Open the topic' },
+                      { l: 'P', v: 'Provide: Give necessary info' },
+                      { l: 'E', v: 'Explain: Show reasoning' },
+                      { l: 'A', v: 'Ask: Prompt for feedback' },
+                      { l: 'R', v: 'Repeat: Refine and iterate' }
+                    ].map(item => (
+                      <li key={item.l} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item.l}</span>
+                        <span className="text-zinc-600 text-sm">{item.v}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* QUEST */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">QUEST</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: Research & structured Inquiry</p>
+                  <ul className="space-y-3">
+                    {['Question', 'Understanding', 'Expectation', 'Scope', 'Time'].map(item => (
+                      <li key={item} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item[0]}</span>
+                        <span className="text-zinc-600 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* APE */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">APE</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: API Testing & Compliance Checks</p>
+                  <ul className="space-y-3">
+                    {['Action', 'Purpose', 'Expectation'].map(item => (
+                      <li key={item} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item[0]}</span>
+                        <span className="text-zinc-600 text-sm">{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                {/* RODES */}
+                <div className="p-10 bg-white border border-zinc-100 rounded-3xl space-y-6 hover:border-brand-200 transition-colors">
+                  <h4 className="text-2xl font-black text-zinc-900">RODES</h4>
+                  <p className="text-sm font-bold text-brand-600">Best for: Automation Infrastructure Design</p>
+                  <ul className="space-y-3">
+                    {[
+                      { l: 'R', v: 'Role' },
+                      { l: 'O', v: 'Objective' },
+                      { l: 'D', v: 'Details' },
+                      { l: 'E', v: 'Examples' },
+                      { l: 'S', v: 'Sense Check' }
+                    ].map(item => (
+                      <li key={item.l} className="flex gap-4">
+                        <span className="font-black text-brand-600 w-4">{item.l}</span>
+                        <span className="text-zinc-600 text-sm">{item.v}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>

@@ -87,13 +87,15 @@
   },
   "changelog": {
     "2.0.2": {
-      "date": "2025-12-25",
+      "date": "2026-06-12",
       "changes": [
-        "Updated all dependencies to latest versions",
+        "Updated all dependencies to latest versions (Vite 6.3, Gemini 0.24)",
         "Fixed TypeScript deprecation warnings and ESLint configuration",
         "Resolved Recharts type errors in BenchmarkChart",
-        "Implemented all missing sections in the Enterprise Manual",
-        "Corrected path aliases and Vite configuration for ESM"
+        "Implemented all missing sections in the Enterprise Manual with detailed frameworks",
+        "Corrected path aliases and Vite configuration for ESM and SWC",
+        "Introduced BFF proxy for secure API integration",
+        "Added comprehensive /docs directory"
       ]
     },
     "2.0.0": {
