@@ -8,7 +8,7 @@ import {
   Tooltip, 
   ResponsiveContainer 
 } from 'recharts';
-import { BENCHMARKS } from '../constants';
+import { BENCHMARKS } from '../constants/index';
 
 export const BenchmarkChart: React.FC = () => {
   const chartData = BENCHMARKS.map(b => ({
