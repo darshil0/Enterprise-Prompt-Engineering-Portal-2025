@@ -11,6 +11,20 @@ export default [
     ignores: ['dist/**', 'node_modules/**', 'vite.config.ts'],
   },
   {
+    files: ['supabase/**/*.ts'],
+    languageOptions: {
+      parser: typescriptParser,
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+        Deno: 'readonly',
+      },
+    },
+    rules: {
+      'no-undef': 'off',
+    },
+  },
+  {
     files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parser: typescriptParser,

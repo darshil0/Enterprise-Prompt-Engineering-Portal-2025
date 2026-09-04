@@ -19,8 +19,7 @@ import { exportToMarkdown, downloadFile } from './utils/exportUtils';
 
 const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('intro');
-  const [resources, setResources] = useState<Resource[]>(INITIAL_RESOURCES);
-  const [isRepairing, setIsRepairing] = useState(false);
+  const [resources] = useState<Resource[]>(INITIAL_RESOURCES);
   const [refinementInput, setRefinementInput] = useState('');
   const [debouncedInput, setDebouncedInput] = useState('');
   const [refinementResult, setRefinementResult] = useState('');
@@ -53,20 +52,6 @@ const App: React.FC = () => {
   const handleCopy = (text: string) => {
     navigator.clipboard.writeText(text);
     setToast("Copied to clipboard");
-  };
-
-  const handleRepairLinks = async () => {
-    setIsRepairing(true);
-    try {
-      const fixed = await geminiService.repairLinks(resources);
-      setResources(fixed);
-      setToast("Global Portal Audit Complete");
-    } catch (error) {
-      console.error('Repair error:', error);
-      setToast("Network failure during audit");
-    } finally {
-      setIsRepairing(false);
-    }
   };
 
   const handleRefinePrompt = async () => {
@@ -648,26 +633,6 @@ const App: React.FC = () => {
                   </div>
                 </a>
               ))}
-            </div>
-            <div className="p-16 bg-zinc-900 rounded-[4rem] text-center border border-zinc-800 shadow-3xl relative overflow-hidden group mt-16">
-              <div className="relative z-10">
-                <h4 className="text-4xl font-black text-white tracking-tight mb-8">
-                  Execute Global Portal Audit?
-                </h4>
-                <p className="text-zinc-400 max-w-2xl mx-auto mb-12 font-medium leading-relaxed text-lg">
-                  Synchronize with latest laboratory guidelines. The auditor will refresh documentation nodes.
-                </p>
-                <button
-                  onClick={handleRepairLinks}
-                  disabled={isRepairing}
-                  className="px-14 py-6 bg-brand-600 hover:bg-brand-500 disabled:bg-zinc-800 text-white rounded-2xl font-black text-xs uppercase tracking-[0.4em] transition-all shadow-3xl mx-auto active:scale-95 flex items-center gap-6"
-                >
-                  {isRepairing && (
-                    <div className="size-5 border-2 border-white/20 border-t-white rounded-full animate-spin"></div>
-                  )}
-                  {isRepairing ? 'Syncing Nodes...' : 'Initialize Deep Scan'}
-                </button>
-              </div>
             </div>
           </div>
         )}

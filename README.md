@@ -15,12 +15,12 @@
 
 ## 📖 Overview
 
-The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered interactive manual for modern prompt engineering. It features structured frameworks, super-prompts, real-time model benchmarking, and AI-powered prompt refinement capabilities using Google's Gemini API.
+The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered interactive manual for modern prompt engineering. It features structured frameworks, super-prompts, real-time model benchmarking, and AI-powered prompt refinement capabilities using a secure Edge Function with Google's Gemini API.
 
 ### ✨ Key Features
 
 - **🧩 Prompt Frameworks (2026 Edition)**: RISEN, COSTAR, RACEF, SPEAR, QUEST, APE, and RODES—use these structured approaches to improve prompt quality by 30-40%
-- **⚡ AI-Powered Refinement**: Input raw prompts → get professionally optimized versions instantly using Gemini 2.0 Flash with automatic framework application
+- **⚡ AI-Powered Refinement**: Input raw prompts → get professionally optimized versions instantly using Gemini 2.0 Flash via a Bolt Database Edge Function
 - **⚙️ System Prompts Library**: Pre-tested system prompts for Claude 4.5 Opus, GPT-5, Gemini 3 Pro/Flash, and DeepSeek R1 with configuration guidance
 - **📊 Model Benchmarking**: Real-time, interactive visualization of GPQA, SWE-bench, AIME, and context window metrics across top LLMs
 - **🔒 Security & Compliance**: Deep-dive into prompt injection defense, PII protection, and enterprise guardrails
@@ -36,9 +36,9 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
 
 - **Node.js** (v18 or higher)
 - **npm** or **yarn**
-- **Gemini API Key** from [Google AI Studio](https://aistudio.google.com/app/apikey)
+- **Gemini API Key** from [Google AI Studio](https://aistudio.google.com/app/apikey) (configured on server-side Edge Function)
 
-### Installation
+### Installation & Development
 
 1. **Clone the repository**
    ```bash
@@ -51,28 +51,14 @@ The **Enterprise Prompt Engineering Portal 2025** is a comprehensive, AI-powered
    npm install
    ```
 
-3. **Set up environment variables**
-   
-   Copy `.env.example` to `.env`:
-   ```bash
-   cp .env.example .env
-   ```
-   
-   Edit `.env` and add your Gemini API key:
-   ```env
-   VITE_GEMINI_API_KEY=your_actual_gemini_api_key_here
-   ```
-   
-   ⚠️ **Security**: Never commit `.env` to version control. It's already listed in `.gitignore`.
-
-4. **Run the development server**
+3. **Run the development server**
    ```bash
    npm run dev
    ```
 
-5. **Open your browser**
+4. **Open your browser**
    
-   Navigate to `http://localhost:3000` (or the port shown in terminal)
+   Navigate to `http://localhost:3000`
 
 ---
 
@@ -87,7 +73,7 @@ enterprise-prompt-portal/
 │   │   ├── BenchmarkChart.tsx    # Interactive recharts visualization
 │   │   └── Manual.tsx            # Comprehensive AI resources & best practices guide
 │   ├── services/                 # External API integrations
-│   │   └── geminiService.ts      # Gemini API wrapper with error handling
+│   │   └── geminiService.ts      # Client service invoking Edge Function
 │   ├── constants/                # Specialized constant modules
 │   │   ├── benchmarks.ts         # Performance metrics for models
 │   │   ├── frameworks.ts         # Prompt engineering frameworks
@@ -97,19 +83,45 @@ enterprise-prompt-portal/
 │   ├── App.tsx                   # Main application component & routing
 │   ├── index.tsx                 # React DOM render entry point
 │   └── vite-env.d.ts             # Vite environment type definitions
-├── public/                       # Static assets (if any)
-├── index.html                    # HTML entry point
-├── index.css                     # Global styles & Tailwind imports
+├── supabase/
+│   └── functions/
+│       └── refine-prompt/        # Bolt Database Edge Function (Deno)
+│           └── index.ts          # Server-side prompt refinement endpoint
+├── public/                       # Static assets
+├── index.html                    # HTML entry point with CSP
 ├── vite.config.ts                # Vite build configuration
 ├── tsconfig.json                 # TypeScript compiler options
-├── tailwind.config.js            # Tailwind CSS customization
-├── postcss.config.js             # PostCSS config for Tailwind
-├── .eslintrc.config.js           # ESLint flat config
+├── eslint.config.js              # ESLint flat config
 ├── package.json                  # Dependencies & npm scripts
-├── .env.example                  # Environment template (safe to commit)
-├── .gitignore                    # Git ignore rules (includes .env)
-└── README.md                     # This file
+├── .env.example                  # Environment template
+├── .gitignore                    # Git ignore rules
+└── README.md                     # Documentation
 ```
+
+---
+
+## ⚡ Bolt Edge Function Architecture
+
+Prompt refinement is handled by the `refine-prompt` Bolt Database Edge Function.
+
+- **Edge Function Name**: `refine-prompt`
+- **Location**: `supabase/functions/refine-prompt/index.ts`
+- **Purpose**: Accepts raw user prompts, applies input sanitization, and calls Gemini 2.0 Flash server-side.
+- **Frontend Invocation**: `geminiService.ts` makes a POST request to `https://refine-prompt.supabase.co/functions/v1/refine-prompt`.
+- **Request Format**:
+  ```json
+  {
+    "prompt": "Your draft prompt here"
+  }
+  ```
+- **Response Format**:
+  ```json
+  {
+    "text": "Refined and structured prompt output"
+  }
+  ```
+- **Server-Side Secret**:
+  - `GEMINI_API_KEY`: Required only in the Edge Function environment. Never exposed to browser code, Vite client environment, or bundle outputs.
 
 ---
 
@@ -117,248 +129,37 @@ enterprise-prompt-portal/
 
 ### Development & Build
 ```bash
-npm run dev          # Start Vite dev server with HMR
+npm run dev          # Start Vite dev server with HMR (opens browser at http://localhost:3000)
 npm run build        # Production build (output to dist/)
 npm run preview      # Preview production build locally
 ```
 
-### Code Quality
+### Code Quality & Testing
 ```bash
-npm run type-check   # TypeScript type checking
+npm run test         # Run unit tests with Vitest
 npm run lint         # Run ESLint
-npm run format       # Format code with Prettier
 ```
 
 ---
 
-## 🌟 Features Deep Dive
+## 🔐 Environment & Security
 
-### 1. Prompt Frameworks
+| Variable | Scope | Description |
+|----------|-------|-------------|
+| `GEMINI_API_KEY` | Server-Only (Edge Function) | Gemini API credentials for prompt refinement |
 
-Six industry-standard frameworks to structure your prompts for clarity and consistency:
-
-| Framework | Use Case | Example |
-|-----------|----------|---------|
-| **RISEN** | General-purpose prompting | Define Role, Instructions, Steps, End Goal, then Narrow scope |
-| **COSTAR** | Content creation & analysis | Context → Objective → Style → Tone → Audience → Response format |
-| **RACEF** | Iterative refinement | Rephrase → Append context → Contextualize → Examples → Follow-up |
-| **SPEAR** | Dialogue & interactive tasks | Start topic → Provide info → Explain reasoning → Ask questions → Repeat |
-| **QUEST** | Requirement gathering | Question → Understanding → Expectation → Scope → Time constraints |
-| **RODES** | Verification-heavy tasks | Role → Objective → Details → Examples → Sense check |
-
-**Recommendation**: Use COSTAR for content work, RISEN for technical tasks, QUEST for requirements.
-
-### 2. AI-Powered Prompt Refinement
-
-1. Input your draft prompt
-2. Optionally select a framework (COSTAR/RISEN applied by default)
-3. Gemini 2.0 Flash refines it in real-time
-4. Get professional output with reasoning transparency
-5. Copy, iterate, or deploy
-
-**Error Handling**: If API fails, you'll see a clear error message with retry options. Check your API key in `.env`.
-
-### 3. System Prompts Library
-
-Pre-configured, production-tested system prompts optimized for:
-- **Google Gemini 3 Pro**: High-reasoning, complex multi-step tasks
-- **Google Gemini 3 Deep Think**: Extended chain-of-thought for math, code, reasoning
-- **Anthropic Claude 4.5 Opus**: Balanced reasoning and accuracy, best for enterprise
-- **OpenAI GPT-5**: Faster inference, good for high-volume applications
-- **DeepSeek R1**: Cost-effective reasoning alternative
-
-Each includes parameter recommendations (temperature, top_p, max_tokens).
-
-### 4. Interactive Benchmarks
-
-Compare LLM performance across critical metrics:
-- **GPQA**: Graduate-level reasoning (hard science/math questions)
-- **SWE-bench**: Real-world software engineering tasks (code generation, debugging)
-- **AIME**: American Invitational Mathematics Exam (olympiad-level math)
-- **Context Window**: Maximum tokens supported (important for long documents/conversations)
-
-Charts update with model selection. Data is sourced from official model cards (Jan 2025).
-
-### 5. Security & Compliance
-
-Deep-dives into:
-- **Prompt Injection Defense**: Detecting and mitigating adversarial inputs
-- **PII Protection**: Anonymization strategies and detection patterns
-- **Enterprise Guardrails**: Rate limiting, content filtering, audit logging
-- **Compliance Frameworks**: HIPAA, SOC2, ISO 27001 considerations for LLM deployment
-
-### 6. Resource Hub
-
-Curated, vetted links to:
-- **Official Docs**: OpenAI, Anthropic, Google, DeepSeek, Meta documentation
-- **Cookbooks & Tutorials**: Prompt engineering best practices
-- **Community Resources**: GitHub repos, blogs, papers
-- **Tools**: LangSmith, Promptfoo, Arize Phoenix for observability
-
----
-
-## 🔐 Environment Variables
-
-| Variable | Description | Required | Example |
-|----------|-------------|----------|---------|
-| `VITE_GEMINI_API_KEY` | Your Gemini API key from Google AI Studio | ✅ Yes | `AIza...` |
-
-**How to get your API key:**
-1. Go to [Google AI Studio](https://aistudio.google.com/app/apikey)
-2. Click "Create API Key"
-3. Copy and paste into `.env`
-
-**Troubleshooting:**
-- If you see "API key invalid" → Check `.env` file exists and key is copied correctly
-- If you see "Quota exceeded" → Your API has rate limits; contact Google Cloud support
-- Key won't work in production? → You'll need a Google Cloud project with billing enabled
-
----
-
-## 📦 Dependencies
-
-### Core (Production)
-```json
-{
-  "react": "^19.2.3",              // UI framework
-  "react-dom": "^19.2.3",          // DOM rendering
-  "@google/generative-ai": "^0.24.1", // Gemini API (web SDK)
-  "recharts": "^2.10.0",           // Charts for benchmarks
-  "lucide-react": "^0.474.0"       // Icons
-}
-```
-
-### Dev
-```json
-{
-  "@vitejs/plugin-react-swc": "^3.11.0", // Vite React SWC integration
-  "typescript": "^5.8.0",            // Type checking
-  "vite": "^6.3.0",                  // Build tool & dev server
-  "tailwindcss": "^3.4.0",           // CSS framework
-  "eslint": "^9.20.0"                // Linting
-}
-```
-
----
-
-## 🚀 Deployment
-
-### Build for Production
-
-```bash
-npm run build
-```
-
-Output: `dist/` directory ready for deployment.
-
-### Deploy to Vercel
-
-```bash
-# Install Vercel CLI (one-time)
-npm install -g vercel
-
-# Deploy
-vercel
-```
-
-Vercel will auto-detect Vite and handle environment variables via dashboard.
-
-### Deploy to Netlify
-
-```bash
-# Install Netlify CLI (one-time)
-npm install -g netlify-cli
-
-# Deploy
-netlify deploy --prod
-```
-
-**Important**: Set `VITE_GEMINI_API_KEY` in the platform's environment variable settings (never in code).
-
-### Deploy to Self-Hosted (Docker)
-
-```dockerfile
-FROM node:18-alpine
-WORKDIR /app
-COPY package*.json .
-RUN npm ci
-COPY . .
-RUN npm run build
-EXPOSE 3000
-CMD ["npm", "run", "preview"]
-```
-
----
-
-## 🐛 Version History
-
-### v2.0.2 (Current)
-
-**Enterprise Manual Implementation**
-- ✅ All missing sections completed: Security, Compliance, Observability, Advanced Optimization
-- ✅ Added 360-degree view of prompt engineering operations
-- ✅ Prompt Injection defense strategies documented
-- ✅ PII protection patterns with examples
-
-**Tech Stack Modernization**
-- ✅ TypeScript 5.8.2 with strict mode
-- ✅ ESLint migrated to flat config (future-proof)
-- ✅ Vite 6.2 with optimized chunking
-- ✅ All deprecation warnings resolved
-
-**Model & Framework Enhancements**
-- ✅ Added Gemini 3 Deep Think benchmarks
-- ✅ New frameworks: RACEF, SPEAR, QUEST
-- ✅ System prompts for GPT-5 and DeepSeek R1
-- ✅ Chain-of-Density (CoD) and APO techniques documented
-
-### v2.0.1 (Previous)
-
-**Critical Fixes**
-- ✅ Moved source code to standard `src/` directory
-- ✅ Fixed `vite.config.ts` ESM compatibility
-- ✅ Corrected variable naming bug (`idx` → `index`) in App.tsx
-- ✅ Switched from backend SDK to frontend `@google/generative-ai`
+**Security Guarantee**:
+- No API keys or credentials exist in frontend code or client bundles.
+- Content Security Policy (CSP) restricts network connections exclusively to authorized endpoints including `https://refine-prompt.supabase.co`.
 
 ---
 
 ## 🤝 Contributing
 
-Contributions welcome! Process:
-
-1. Fork the repository
-2. Create feature branch: `git checkout -b feature/YourFeature`
-3. Commit: `git commit -m 'Add YourFeature'`
-4. Push: `git push origin feature/YourFeature`
-5. Open Pull Request with description
-
-**Guidelines**: Keep PRs focused, include tests if applicable, follow TypeScript/ESLint rules.
+Contributions welcome! See [CONTRIBUTING.md](CONTRIBUTING.MD) for guidelines.
 
 ---
 
 ## 📝 License
 
-MIT License – see [LICENSE](LICENSE) for details. Use freely in commercial and personal projects.
-
----
-
-## 🙏 Acknowledgments
-
-- Google DeepMind for Gemini API
-- OpenAI for GPT models and best practices
-- Anthropic for Claude and prompt engineering guidance
-- Open-source community (Vite, React, Tailwind teams)
-
----
-
-## 📞 Support & Issues
-
-- **GitHub Issues**: [Report bugs or request features](https://github.com/darshil0/Enterprise-Prompt-Engineering-Portal-2025/issues)
-- **Documentation**: Full docs at [/docs](./docs) (if available)
-- **API Issues**: Check [Google AI Studio status](https://status.cloud.google.com/)
-
----
-
-**Built with ❤️ by Darshil Shah**
-
-*Last Updated: June 2026*
+MIT License – see [LICENSE](LICENSE) for details.
