@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file.
 
+## [2.1.0] - 2026-06-15
+
+### Added
+- Created Bolt Database Edge Function `refine-prompt` (`supabase/functions/refine-prompt/index.ts`) for server-side prompt refinement using Gemini 2.0 Flash.
+- Preserved Markdown delimiters (`---`, `===`) and formatting in prompt input sanitizer while ensuring prompt injection defense.
+
+### Changed
+- Migrated client prompt refinement in `geminiService.ts` from legacy Express `/api/refine` BFF to the new Bolt Edge Function.
+- Updated Content Security Policy in `index.html` to allow connection to Supabase Edge Functions.
+- Configured Vite server to auto-open browser (`open: true`).
+
+### Removed
+- Removed legacy Express server (`server/index.ts`), `/api/refine` route, server middleware, and related scripts.
+- Removed obsolete Express server dependencies (`express`, `express-rate-limit`, `cors`, `@types/express`, `@types/cors`, `tsx`).
+- Removed Vite `/api` proxy configuration and client `process.env` key injections.
+- Removed dead client code `generateContent` and `repairLinks` from `geminiService.ts`.
+
 ## [2.0.2] - 2026-06-12
 
 ### Added

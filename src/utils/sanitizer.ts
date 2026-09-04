@@ -5,9 +5,10 @@
 export const sanitizePrompt = (input: string): string => {
   if (!input) return "";
 
-  // Remove control characters and limit length
+  // Remove control characters (except newline \n, carriage return \r, tab \t) and limit length
+  // \x00-\x08, \x0B-\x0C, \x0E-\x1F, \x7F-\x9F
   // eslint-disable-next-line no-control-regex
-  let sanitized = input.replace(/[\x00-\x1F\x7F-\x9F]/g, "");
+  let sanitized = input.replace(/[\x00-\x08\x0B\x0C\x0E-\x1F\x7F-\x9F]/g, "");
 
   // Truncate to a reasonable max length
   const MAX_LENGTH = 4000;
@@ -24,8 +25,6 @@ export const sanitizePrompt = (input: string): string => {
     /you are now/gi,
     /bypass/gi,
     /jailbreak/gi,
-    /---/g,
-    /===/g,
   ];
 
   injectionPatterns.forEach((pattern) => {

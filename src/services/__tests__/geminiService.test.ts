@@ -10,7 +10,7 @@ describe('geminiService', () => {
     fetchMock.mockClear();
   });
 
-  it('should refine a prompt via BFF proxy', async () => {
+  it('should refine a prompt via Bolt Edge Function', async () => {
     fetchMock.mockResolvedValue({
       ok: true,
       json: () => Promise.resolve({ text: 'Refined prompt result' }),
@@ -18,14 +18,17 @@ describe('geminiService', () => {
 
     const result = await geminiService.refinePrompt('Test prompt');
 
-    expect(fetchMock).toHaveBeenCalledWith('/api/refine', expect.objectContaining({
-      method: 'POST',
-      body: JSON.stringify({ prompt: 'Test prompt' }),
-    }));
+    expect(fetchMock).toHaveBeenCalledWith(
+      'https://refine-prompt.supabase.co/functions/v1/refine-prompt',
+      expect.objectContaining({
+        method: 'POST',
+        body: JSON.stringify({ prompt: 'Test prompt' }),
+      })
+    );
     expect(result).toBe('Refined prompt result');
   });
 
-  it('should handle API errors from BFF proxy', async () => {
+  it('should handle API errors from Edge Function', async () => {
     fetchMock.mockResolvedValue({
       ok: false,
       status: 429,

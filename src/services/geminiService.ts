@@ -1,21 +1,31 @@
-import { Resource } from "../types";
 import { sanitizePrompt } from "../utils/sanitizer";
+
+// Bolt Edge Function endpoint URL for prompt refinement
+const EDGE_FUNCTION_URL = "https://refine-prompt.supabase.co/functions/v1/refine-prompt";
 
 export const geminiService = {
   async refinePrompt(input: string): Promise<string> {
     const sanitizedInput = sanitizePrompt(input);
     try {
-      const response = await fetch('/api/refine', {
-        method: 'POST',
+      const response = await fetch(EDGE_FUNCTION_URL, {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ prompt: sanitizedInput }),
       });
 
       if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.error || `Error: ${response.status}`);
+        let errorMessage = `Error: ${response.status}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMessage = errorData.error;
+          }
+        } catch {
+          // Response was not JSON
+        }
+        throw new Error(errorMessage);
       }
 
       const data = await response.json();
@@ -36,17 +46,5 @@ export const geminiService = {
 
       throw new Error(message);
     }
-  },
-
-  async repairLinks(resources: Resource[]): Promise<Resource[]> {
-    // For now, keep as original since it's an admin/internal tool,
-    // but ideally this should also be proxied if used publicly.
-    // Given the task, we focus on the public-facing refinement.
-    return resources;
-  },
-
-  async generateContent(_prompt: string, _model: string = "gemini-2.0-flash"): Promise<string> {
-    // Proxied version would go here
-    return "";
   },
 };
